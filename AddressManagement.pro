@@ -26,6 +26,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    define.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    addressmanagement.qrc
+
+win32
+{
+   RC_FILE = AddressManagement.rc
+   CONFIG += embed_manifest_exe
+   QMAKE_LFLAGS_WINDOWS += /MANIFESTUAC:level=\'requireAdministrator\'
+}
+
+TRANSLATIONS += Lang_ko_KR.ts

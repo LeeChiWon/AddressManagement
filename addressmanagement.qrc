@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/add.png</file>
+        <file>img/delete.png</file>
+        <file>img/download.png</file>
+        <file>img/duplication.png</file>
+        <file>img/group_add.png</file>
+        <file>img/group_delete.png</file>
+        <file>img/upload.png</file>
+        <file>img/addressmanagement.png</file>
+        <file>img/exit.png</file>
+        <file>translator/Lang_ko_KR.qm</file>
+    </qresource>
+</RCC>
