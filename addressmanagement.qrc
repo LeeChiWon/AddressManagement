@@ -10,5 +10,9 @@
         <file>img/addressmanagement.png</file>
         <file>img/exit.png</file>
         <file>translator/Lang_ko_KR.qm</file>
+        <file>img/cancel.png</file>
+        <file>img/save.png</file>
+        <file>img/phonenumberadd.png</file>
+        <file>img/phonenumberdelete.png</file>
     </qresource>
 </RCC>
