@@ -6,11 +6,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    SettingInit();
 }
 
 MainWindow::~MainWindow()
-{
-    Setting->deleteLater();
+{    
     delete ui;
 }
 
@@ -49,6 +49,7 @@ void MainWindow::on_actionAddressAdd_triggered()
 {
     AddressAddDialog AddressAddDlg;
     AddressAddDlg.exec();
+
 }
 
 void MainWindow::on_actionAddressDelete_triggered()
