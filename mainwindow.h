@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "define.h"
+#include "addressadddialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,19 +22,12 @@ protected:
 
 private slots:
     void on_actionExit_triggered();
-
     void on_actionAddressAdd_triggered();
-
     void on_actionAddressDelete_triggered();
-
     void on_actionGroupAdd_triggered();
-
     void on_actionGroupDelete_triggered();
-
     void on_actionUpload_triggered();
-
     void on_actionDownload_triggered();
-
     void on_actionDuplicateCheck_triggered();
 
 private:

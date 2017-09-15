@@ -318,8 +318,8 @@
     <string/>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/img/phonenumberadd.png</normaloff>:/img/phonenumberadd.png</iconset>
+    <iconset resource="addressmanagement.qrc">
+     <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_PhoneNumber_2">
@@ -581,8 +581,8 @@
     <string/>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/img/phonenumberdelete.png</normaloff>:/img/phonenumberdelete.png</iconset>
+    <iconset resource="addressmanagement.qrc">
+     <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_EMail">
@@ -961,8 +961,8 @@
     <string/>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/img/phonenumberdelete.png</normaloff>:/img/phonenumberdelete.png</iconset>
+    <iconset resource="addressmanagement.qrc">
+     <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_EMailAdd">
@@ -990,8 +990,8 @@
     <string/>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/img/phonenumberadd.png</normaloff>:/img/phonenumberadd.png</iconset>
+    <iconset resource="addressmanagement.qrc">
+     <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
    </property>
   </widget>
   <widget class="QLabel" name="label_8">
@@ -1089,7 +1089,221 @@
     <string>Group</string>
    </property>
   </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>220</y>
+     <width>150</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>150</width>
+     <height>23</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>150</width>
+     <height>23</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_GroupAdd">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>220</y>
+     <width>31</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>31</width>
+     <height>23</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>31</width>
+     <height>23</height>
+    </size>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="addressmanagement.qrc">
+     <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>250</y>
+     <width>100</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>100</width>
+     <height>23</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>100</width>
+     <height>23</height>
+    </size>
+   </property>
+   <property name="palette">
+    <palette>
+     <active>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Window">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>200</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </active>
+     <inactive>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Window">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>200</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </inactive>
+     <disabled>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>200</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Window">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>200</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </disabled>
+    </palette>
+   </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="text">
+    <string>Company</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_CompanyName">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>250</y>
+     <width>100</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>100</width>
+     <height>23</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>100</width>
+     <height>23</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_CompanyDepartment">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>250</y>
+     <width>100</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>100</width>
+     <height>23</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>100</width>
+     <height>23</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_CompanyPosition">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>250</y>
+     <width>100</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>100</width>
+     <height>23</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>100</width>
+     <height>23</height>
+    </size>
+   </property>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="addressmanagement.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -17,6 +17,8 @@ public:
 
 private:
     Ui::AddressAddDialog *ui;
+
+    void UIInit();
 };
 
 #endif // ADDRESSADDDIALOG_H

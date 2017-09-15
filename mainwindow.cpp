@@ -47,7 +47,8 @@ void MainWindow::SettingInit()
 }
 void MainWindow::on_actionAddressAdd_triggered()
 {
-
+    AddressAddDialog AddressAddDlg;
+    AddressAddDlg.exec();
 }
 
 void MainWindow::on_actionAddressDelete_triggered()

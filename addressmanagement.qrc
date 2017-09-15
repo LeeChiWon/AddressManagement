@@ -10,5 +10,7 @@
         <file>img/addressmanagement.png</file>
         <file>img/exit.png</file>
         <file>translator/Lang_ko_KR.qm</file>
+        <file>img/minus.png</file>
+        <file>img/plus.png</file>
     </qresource>
 </RCC>
