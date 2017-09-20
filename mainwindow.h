@@ -29,12 +29,16 @@ private slots:
     void on_actionUpload_triggered();
     void on_actionDownload_triggered();
     void on_actionDuplicateCheck_triggered();
+    void DBInit();
 
 private:
     Ui::MainWindow *ui;
     QSettings *Setting;
 
     void SettingInit();
+    void DBBackup();
+    void TreeWidgetInit();
+
 };
 
 #endif // MAINWINDOW_H

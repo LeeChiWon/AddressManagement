@@ -2,6 +2,9 @@
 #define DEFINE_H
 
 #include <QtWidgets>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlError>
 
 enum Calculation
 {
