@@ -69,7 +69,7 @@ void MainWindow::TreeWidgetInit()
     ui->treeWidget->clear();
     QStringList TreeText=QStringList()<<tr("AllAddress")<<tr("NoNameAddress");
     QStringList GroupText;
-    QTreeWidgetItem *item;
+    QTreeWidgetItem *item,*child;
     QSqlDatabase DB=QSqlDatabase::database("MainDB");
 
     try
@@ -88,12 +88,22 @@ void MainWindow::TreeWidgetInit()
             GroupText.append(query.value("groupname").toString());
         }
 
-        foreach(QString Text,TreeText)
+        for(int i=0; i<TreeText.count(); i++)
         {
             item=new QTreeWidgetItem();
-            item->setText(0,Text);
+            item->setText(0,TreeText.at(i));
             ui->treeWidget->addTopLevelItem(item);
+            if(i==ALL)
+            {
+                for(int j=0; j<GroupText.count(); j++)
+                {
+                    child=new QTreeWidgetItem();
+                    child->setText(0,GroupText.at(j));
+                    item->addChild(child);
+                }
+            }
         }
+        ui->treeWidget->expandAll();
         DB.close();
     }
     catch(QException &e)

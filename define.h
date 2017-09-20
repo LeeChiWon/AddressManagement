@@ -6,9 +6,14 @@
 #include <QSqlQuery>
 #include <QSqlError>
 
-enum Calculation
+enum CALCULATION
 {
     PLUS,MINUS
+};
+
+enum TREEWIDGET
+{
+    ALL,NONAME
 };
 
 #endif // DEFINE_H
