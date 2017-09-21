@@ -69,9 +69,11 @@ void MainWindow::TreeWidgetInit()
     ui->treeWidget->clear();
     QStringList TreeText=QStringList()<<tr("AllAddress")<<tr("NoNameAddress");
     QStringList GroupText;
-    QTreeWidgetItem *item;
+    QTreeWidgetItem *item,*subitem;
     QSqlDatabase DB=QSqlDatabase::database("MainDB");
-
+    QMap<QString,int> GroupMap;
+    QString Count;
+    int AllCount,NoNameCount;
     try
     {
         if(!DB.isOpen())
@@ -88,10 +90,38 @@ void MainWindow::TreeWidgetInit()
             GroupText.append(query.value("groupname").toString());
         }
 
-        foreach(QString Text,TreeText)
+        query.exec(QString("select grouping, count(*) as count from group_management group by grouping"));
+
+        while(query.next())
+        {
+            GroupMap.insert(query.value("grouping").toString(),query.value("count").toInt());
+        }
+        query.exec(QString("select sum(case when name not null then 1 end) as allname, sum(case when name=null then 1 end) as noname from address_management"));
+        query.next();
+
+        AllCount=query.value("allname").toInt();
+        NoNameCount=query.value("noname").toInt();
+
+        for(int i=0; i<TreeText.count(); i++)
         {
             item=new QTreeWidgetItem();
-            item->setText(0,Text);
+            //
+            switch(i)
+            {
+            case ALL:
+                item->setText(0,TreeText.at(i)+"     "+QString::number(AllCount));
+                for(int j=0; j<GroupText.count(); j++)
+                {
+                    Count=QString::number(GroupMap.value(GroupText.at(j)));
+                    subitem=new QTreeWidgetItem();
+                    subitem->setText(0,GroupText.at(j)+"     "+Count);
+                    item->addChild(subitem);
+                }
+                break;
+            case NONAME:
+                item->setText(0,TreeText.at(i)+"     "+QString::number(NoNameCount));
+                break;
+            }
             ui->treeWidget->addTopLevelItem(item);
         }
         DB.close();
@@ -116,7 +146,10 @@ void MainWindow::on_actionAddressDelete_triggered()
 
 void MainWindow::on_actionGroupAdd_triggered()
 {
-
+    GroupAddDialog GroupAddDlg;
+    connect(&GroupAddDlg,SIGNAL(DBInit()),this,SLOT(DBInit()));
+    connect(&GroupAddDlg,SIGNAL(TreeWidgetInit()),this,SLOT(TreeWidgetInit()));
+    GroupAddDlg.exec();
 }
 
 void MainWindow::on_actionGroupDelete_triggered()
@@ -163,9 +196,10 @@ void MainWindow::DBInit()
         }
 
         QSqlQuery query(DB);
-        query.exec(QString("create table if not exists address_management (name text, phonenumber text, phonenumber2 text, phonenumber3 text, email text, email2 text, email3 text"
-                           "group text, companyname text, department text, position text, addresstype text, addressnumber text, address text, "
+        query.exec(QString("create table if not exists address_management (name text, phonenumber text, phonenumber2 text, phonenumber3 text, email text, email2 text, email3 text,"
+                           " grouping text, companyname text, department text, position text, addresstype text, addressnumber text, address text, "
                            "addresstype2 text, addressnumber2 text, address2 text, addresstype3 text, addressnumber3 text, address3 text, memo text)"));
+
         query.exec(QString("create table if not exists group_management (groupname text not null primary key)"));
         DB.close();
     }

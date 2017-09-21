@@ -45,6 +45,7 @@ private:
 
     void UIInit();
     int Calculation(int,int);
+    void DBSave();
 
 };
 

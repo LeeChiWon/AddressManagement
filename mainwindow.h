@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "define.h"
 #include "addressadddialog.h"
+#include "groupadddialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -30,6 +31,7 @@ private slots:
     void on_actionDownload_triggered();
     void on_actionDuplicateCheck_triggered();
     void DBInit();
+    void TreeWidgetInit();
 
 private:
     Ui::MainWindow *ui;
@@ -37,8 +39,6 @@ private:
 
     void SettingInit();
     void DBBackup();
-    void TreeWidgetInit();
-
 };
 
 #endif // MAINWINDOW_H

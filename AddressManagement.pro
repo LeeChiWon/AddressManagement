@@ -25,14 +25,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp\
-        addressadddialog.cpp
+        addressadddialog.cpp \
+    groupadddialog.cpp
 
 HEADERS  += mainwindow.h \
     define.h\
-    addressadddialog.h
+    addressadddialog.h \
+    groupadddialog.h
 
 FORMS    += mainwindow.ui\
-            addressadddialog.ui
+            addressadddialog.ui \
+    groupadddialog.ui
 
 RESOURCES += \
     addressmanagement.qrc

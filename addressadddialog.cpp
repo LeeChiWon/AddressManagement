@@ -55,6 +55,71 @@ int AddressAddDialog::Calculation(int Value, int Select)
     return Value;
 }
 
+void AddressAddDialog::DBSave()
+{
+    QSqlDatabase DB=QSqlDatabase::database("MainDB");
+    try
+    {
+        if(!DB.isOpen())
+        {
+            QSqlDatabase::removeDatabase("MainDB");
+            emit DBInit();
+        }
+
+        QSqlQuery query(DB);
+        query.exec(QString("select * from address_management where phonenumber='%1' or phonenumber='%2' or phonenumber='%3' or phonenumber2='%1' or phonenumber2='%2' or phonenumber2='%3'"
+                           "or phonenumber3='%1' or phonenumber3='%2' or phonenumber3='%3'").arg(ui->lineEdit_PhoneNumber->text(),ui->lineEdit_PhoneNumber_2->text(),ui->lineEdit_PhoneNumber_3->text()));
+
+        if(!query.next())
+        {
+            query.exec(QString("insert into address_management(name,phonenumber,phonenumber2,phonenumber3,email,email2,email3,grouping,companyname,department,position,"
+                               "addresstype,addressnumber,address,addresstype2,addressnumber2,address2,addresstype3,addressnumber3,address3,memo)"
+                               " values('%1','%2','%3','%4','%5','%6','%7','%8','%9','%10','%11','%12','%13','%14','%15','%16','%17','%18','%19','%20','%21')")
+                       .arg(ui->lineEdit_Name->text(),ui->lineEdit_PhoneNumber->text(),ui->lineEdit_PhoneNumber_2->text(),ui->lineEdit_PhoneNumber_3->text(),ui->lineEdit_EMail->text())
+                       .arg(ui->lineEdit_EMail_2->text(),ui->lineEdit_EMail_3->text(),ui->comboBox_Group->currentText(),ui->lineEdit_CompanyName->text(),ui->lineEdit_CompanyDepartment->text())
+                       .arg(ui->lineEdit_CompanyPosition->text(),ui->comboBox_Address->currentText(),ui->lineEdit_AddressNumber->text(),ui->textEdit_Address->toPlainText(),ui->comboBox_Address_2->currentText())
+                       .arg(ui->lineEdit_AddressNumber_2->text(),ui->textEdit_Address_2->toPlainText(),ui->comboBox_Address_3->currentText(),ui->lineEdit_AddressNumber_3->text(),ui->textEdit_Address_3->toPlainText())
+                       .arg(ui->textEdit_Memo->toPlainText()));
+        }
+
+        else
+        {
+            int ret = QMessageBox::information(this, tr("Duplicate PhoneNumber"),
+                                           tr("Do you want Overwrite?\nOK:Overwrite, CANCEL:New"),
+                                           QMessageBox::Ok| QMessageBox::Cancel,
+                                           QMessageBox::Ok);
+            switch(ret)
+            {
+            case QMessageBox::Ok:
+                query.exec(QString("update address_management set name='%1', phonenumber='%2',phonenumber2='%3',phonenumber3='%4',email='%5',email2='%6',email3='%7',grouping='%8',companyname='%9',department='%10'"
+                                   ",position='%11',addresstype='%12',addressnumber='%13',address='%14',addresstype2='%15',addressnumber2='%16',address2='%17',addresstype3='%18',addressnumber3='%19',address3='%20',memo='%21'")
+                           .arg(ui->lineEdit_Name->text(),ui->lineEdit_PhoneNumber->text(),ui->lineEdit_PhoneNumber_2->text(),ui->lineEdit_PhoneNumber_3->text(),ui->lineEdit_EMail->text())
+                           .arg(ui->lineEdit_EMail_2->text(),ui->lineEdit_EMail_3->text(),ui->comboBox_Group->currentText(),ui->lineEdit_CompanyName->text(),ui->lineEdit_CompanyDepartment->text())
+                           .arg(ui->lineEdit_CompanyPosition->text(),ui->comboBox_Address->currentText(),ui->lineEdit_AddressNumber->text(),ui->textEdit_Address->toPlainText(),ui->comboBox_Address_2->currentText())
+                           .arg(ui->lineEdit_AddressNumber_2->text(),ui->textEdit_Address_2->toPlainText(),ui->comboBox_Address_3->currentText(),ui->lineEdit_AddressNumber_3->text(),ui->textEdit_Address_3->toPlainText())
+                           .arg(ui->textEdit_Memo->toPlainText()));
+                break;
+            case QMessageBox::Cancel:
+                query.exec(QString("insert into address_management(name,phonenumber,phonenumber2,phonenumber3,email,email2,email3,grouping,companyname,department,position,"
+                                   "addresstype,addressnumber,address,addresstype2,addressnumber2,address2,addresstype3,addressnumber3,address3,memo)"
+                                   " values('%1','%2','%3','%4','%5','%6','%7','%8','%9','%10','%11','%12','%13','%14','%15','%16','%17','%18','%19','%20','%21')")
+                           .arg(ui->lineEdit_Name->text(),ui->lineEdit_PhoneNumber->text(),ui->lineEdit_PhoneNumber_2->text(),ui->lineEdit_PhoneNumber_3->text(),ui->lineEdit_EMail->text())
+                           .arg(ui->lineEdit_EMail_2->text(),ui->lineEdit_EMail_3->text(),ui->comboBox_Group->currentText(),ui->lineEdit_CompanyName->text(),ui->lineEdit_CompanyDepartment->text())
+                           .arg(ui->lineEdit_CompanyPosition->text(),ui->comboBox_Address->currentText(),ui->lineEdit_AddressNumber->text(),ui->textEdit_Address->toPlainText(),ui->comboBox_Address_2->currentText())
+                           .arg(ui->lineEdit_AddressNumber_2->text(),ui->textEdit_Address_2->toPlainText(),ui->comboBox_Address_3->currentText(),ui->lineEdit_AddressNumber_3->text(),ui->textEdit_Address_3->toPlainText())
+                           .arg(ui->textEdit_Memo->toPlainText()));
+                break;
+            }
+        }
+        DB.close();
+    }
+    catch(QException &e)
+    {
+        QMessageBox::warning(this,tr("Warning"),QString("%1\n%2").arg(tr("Database Error!"),e.what()),QMessageBox::Ok);
+        QSqlDatabase::removeDatabase("MainDB");
+    }
+}
+
 void AddressAddDialog::on_lineEdit_CompanyDepartment_selectionChanged()
 {
     ui->lineEdit_CompanyDepartment->setText("");
@@ -205,8 +270,8 @@ void AddressAddDialog::on_pushButton_AddressNumberDelete_clicked()
 }
 
 void AddressAddDialog::on_pushButton_Save_clicked()
-{
-
+{    
+    DBSave();
 }
 
 void AddressAddDialog::on_pushButton_Cancel_clicked()
