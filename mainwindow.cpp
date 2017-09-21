@@ -69,11 +69,9 @@ void MainWindow::TreeWidgetInit()
     ui->treeWidget->clear();
     QStringList TreeText=QStringList()<<tr("AllAddress")<<tr("NoNameAddress");
     QStringList GroupText;
-<<<<<<< HEAD
+
     QTreeWidgetItem *item,*subitem;
-=======
-    QTreeWidgetItem *item,*child;
->>>>>>> origin/master
+
     QSqlDatabase DB=QSqlDatabase::database("MainDB");
     QMap<QString,int> GroupMap;
     QString Count;
@@ -94,7 +92,7 @@ void MainWindow::TreeWidgetInit()
             GroupText.append(query.value("groupname").toString());
         }
 
-<<<<<<< HEAD
+
         query.exec(QString("select grouping, count(*) as count from group_management group by grouping"));
 
         while(query.next())
@@ -110,7 +108,7 @@ void MainWindow::TreeWidgetInit()
         for(int i=0; i<TreeText.count(); i++)
         {
             item=new QTreeWidgetItem();
-            //
+
             switch(i)
             {
             case ALL:
@@ -126,23 +124,7 @@ void MainWindow::TreeWidgetInit()
             case NONAME:
                 item->setText(0,TreeText.at(i)+"     "+QString::number(NoNameCount));
                 break;
-            }
-=======
-        for(int i=0; i<TreeText.count(); i++)
-        {
-            item=new QTreeWidgetItem();
-            item->setText(0,TreeText.at(i));
->>>>>>> origin/master
-            ui->treeWidget->addTopLevelItem(item);
-            if(i==ALL)
-            {
-                for(int j=0; j<GroupText.count(); j++)
-                {
-                    child=new QTreeWidgetItem();
-                    child->setText(0,GroupText.at(j));
-                    item->addChild(child);
-                }
-            }
+            }      
         }
         ui->treeWidget->expandAll();
         DB.close();
