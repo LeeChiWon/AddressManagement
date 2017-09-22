@@ -17,6 +17,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    Ui::MainWindow *ui;
 
 protected:
     void closeEvent(QCloseEvent *event);
@@ -32,9 +33,11 @@ private slots:
     void on_actionDuplicateCheck_triggered();
     void DBInit();
     void TreeWidgetInit();
+    void TableWidgetInit();
+    void on_pushButton_Search_clicked();
 
 private:
-    Ui::MainWindow *ui;
+
     QSettings *Setting;
 
     void SettingInit();

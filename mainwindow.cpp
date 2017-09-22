@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     SettingInit();
     DBInit();
     TreeWidgetInit();
+    TableWidgetInit();
+    ui->lineEdit_Search->setPlaceholderText(tr("Address Search"));
 }
 
 MainWindow::~MainWindow()
@@ -39,7 +41,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
         Setting->setValue("Configuration/Geometry",saveGeometry());       
         break;    
     }
-    event->accept();
+    event->accept();   
 }
 
 void MainWindow::SettingInit()
@@ -79,18 +81,21 @@ void MainWindow::GroupDelete(int Select)
         }
 
         QSqlQuery query(DB);
+        query.exec(QString("delete from group_management where groupname='%1'").arg(ui->treeWidget->currentItem()->text(0)));
+
         switch (Select)
         {
         case ALL_DELETE:
-            query.exec(QString("select * from group_management"));
+            query.exec(QString("delete from address_management where grouping='%1'").arg(ui->treeWidget->currentItem()->text(0)));
+            QMessageBox::information(this,tr("Group Delete"),tr("Group & Includes Addresses is Deleted."),QMessageBox::Ok);
             break;
-        case GROUP_DELETE:
-            query.exec(QString("delete from group_management where groupname='%1'").arg(ui->treeWidget->currentItem()->text(0)));
+        case GROUP_DELETE:            
             query.exec(QString("update address_management set grouping='' where grouping='%1'").arg(ui->treeWidget->currentItem()->text(0)));
+            QMessageBox::information(this,tr("Group Delete"),tr("Group is Deleted."),QMessageBox::Ok);
             break;
         }
 
-        TreeWidgetInit();
+        TreeWidgetInit();        
         DB.close();
     }
     catch(QException &e)
@@ -103,6 +108,9 @@ void MainWindow::GroupDelete(int Select)
 void MainWindow::TreeWidgetInit()
 {
     ui->treeWidget->clear();
+    ui->treeWidget->header()->setVisible(false);
+    ui->treeWidget->setHeaderLabels(QStringList()<<tr("GroupName")<<tr("Count"));
+    ui->treeWidget->setColumnWidth(1,5);
     QStringList TreeText=QStringList()<<tr("AllAddress")<<tr("NoNameAddress");
     QStringList GroupText;
 
@@ -148,22 +156,26 @@ void MainWindow::TreeWidgetInit()
             switch(i)
             {
             case ALL:
-                item->setText(0,TreeText.at(i)+"     "+QString::number(AllCount));
+                item->setText(0,TreeText.at(i));
+                item->setText(1,QString::number(AllCount));
                 for(int j=0; j<GroupText.count(); j++)
                 {
                     Count=QString::number(GroupMap.value(GroupText.at(j)));
                     subitem=new QTreeWidgetItem();
-                    subitem->setText(0,GroupText.at(j)+"     "+Count);
+                    subitem->setText(0,GroupText.at(j));
+                    subitem->setText(1,Count);
                     item->addChild(subitem);
                 }
                 break;
             case NONAME:
-                item->setText(0,TreeText.at(i)+"     "+QString::number(NoNameCount));
+                item->setText(0,TreeText.at(i));
+                item->setText(1,QString::number(NoNameCount));
                 break;
             }      
             ui->treeWidget->addTopLevelItem(item);
         }
         ui->treeWidget->expandAll();
+        ui->treeWidget->resizeColumnToContents(0);
         DB.close();
     }
     catch(QException &e)
@@ -171,6 +183,13 @@ void MainWindow::TreeWidgetInit()
         QMessageBox::warning(this,tr("Warning"),QString("%1\n%2").arg(tr("Database Error!"),e.what()),QMessageBox::Ok);
         QSqlDatabase::removeDatabase("MainDB");
     }
+}
+
+void MainWindow::TableWidgetInit()
+{
+    ui->tableWidget->clear();
+    ui->tableWidget->setHorizontalHeaderLabels(QStringList()<<tr("Name")<<tr("PhoneNumber")<<tr("EMail")<<tr("Company")<<tr("Department")<<tr("Position"));
+    ui->tableWidget->setRowCount(0);
 }
 void MainWindow::on_actionAddressAdd_triggered()
 {
@@ -192,21 +211,22 @@ void MainWindow::on_actionGroupAdd_triggered()
 
 void MainWindow::on_actionGroupDelete_triggered()
 {
-    if(!ui->treeWidget->currentItem()->text(0).isEmpty() || !ui->treeWidget->currentItem()->text(0)==tr("AllAddress") ||  !ui->treeWidget->currentItem()->text(0)==tr("NoNameAddress"))
+    if(!ui->treeWidget->currentItem()->text(0).isEmpty() || ui->treeWidget->currentItem()->text(0).isEmpty()!=tr("AllAddress") ||  ui->treeWidget->currentItem()->text(0)!=tr("NoNameAddress"))
     {
         int ret = QMessageBox::warning(this, tr("Group Delete"),
                                        tr("Do you want to delete the includes Addresses?"),
-                                       QMessageBox::YesAll| QMessageBox::NoToAll|QMessageBox::No,
-                                       QMessageBox::YesAll);
+                                       QMessageBox::Yes| QMessageBox::No|QMessageBox::Cancel,
+                                       QMessageBox::Yes);
         switch(ret)
         {
-        case QMessageBox::YesAll:
+        case QMessageBox::Yes:
             GroupDelete(ALL_DELETE);
             break;
-        case QMessageBox::NoToAll:
+        case QMessageBox::No:
             GroupDelete(GROUP_DELETE);
             break;
         }
+        TreeWidgetInit();
     }
 }
 
@@ -262,4 +282,9 @@ void MainWindow::DBInit()
         QSqlDatabase::removeDatabase("MainDB");
         return;
     }
+}
+
+void MainWindow::on_pushButton_Search_clicked()
+{
+
 }

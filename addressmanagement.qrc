@@ -12,5 +12,6 @@
         <file>translator/Lang_ko_KR.qm</file>
         <file>img/minus.png</file>
         <file>img/plus.png</file>
+        <file>img/search.png</file>
     </qresource>
 </RCC>
