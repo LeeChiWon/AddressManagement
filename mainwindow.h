@@ -39,6 +39,7 @@ private:
 
     void SettingInit();
     void DBBackup();
+    void GroupDelete(int);
 };
 
 #endif // MAINWINDOW_H

@@ -16,4 +16,9 @@ enum TREEWIDGET
     ALL,NONAME
 };
 
+enum GROUP
+{
+    ALL_DELETE,GROUP_DELETE
+};
+
 #endif // DEFINE_H

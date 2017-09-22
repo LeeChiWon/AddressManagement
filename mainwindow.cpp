@@ -1,11 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+MainWindow *pMain;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    pMain=this;
     SettingInit();
     DBInit();
     TreeWidgetInit();
@@ -62,6 +65,39 @@ void MainWindow::DBBackup()
     }
     QFile::copy(QApplication::applicationDirPath()+"/AddressManagement.db",
                 QApplication::applicationDirPath()+QString("/DBBackup/%1.db").arg(QDate::currentDate().toString("yyyy-MM-dd")));
+}
+
+void MainWindow::GroupDelete(int Select)
+{
+    QSqlDatabase DB=QSqlDatabase::database("MainDB");
+    try
+    {
+        if(!DB.isOpen())
+        {
+            QSqlDatabase::removeDatabase("MainDB");
+            DBInit();
+        }
+
+        QSqlQuery query(DB);
+        switch (Select)
+        {
+        case ALL_DELETE:
+            query.exec(QString("select * from group_management"));
+            break;
+        case GROUP_DELETE:
+            query.exec(QString("delete from group_management where groupname='%1'").arg(ui->treeWidget->currentItem()->text(0)));
+            query.exec(QString("update address_management set grouping='' where grouping='%1'").arg(ui->treeWidget->currentItem()->text(0)));
+            break;
+        }
+
+        TreeWidgetInit();
+        DB.close();
+    }
+    catch(QException &e)
+    {
+        QMessageBox::warning(this,tr("Warning"),QString("%1\n%2").arg(tr("Database Error!"),e.what()),QMessageBox::Ok);
+        QSqlDatabase::removeDatabase("MainDB");
+    }
 }
 
 void MainWindow::TreeWidgetInit()
@@ -125,6 +161,7 @@ void MainWindow::TreeWidgetInit()
                 item->setText(0,TreeText.at(i)+"     "+QString::number(NoNameCount));
                 break;
             }      
+            ui->treeWidget->addTopLevelItem(item);
         }
         ui->treeWidget->expandAll();
         DB.close();
@@ -149,15 +186,28 @@ void MainWindow::on_actionAddressDelete_triggered()
 
 void MainWindow::on_actionGroupAdd_triggered()
 {
-    GroupAddDialog GroupAddDlg;
-    connect(&GroupAddDlg,SIGNAL(DBInit()),this,SLOT(DBInit()));
-    connect(&GroupAddDlg,SIGNAL(TreeWidgetInit()),this,SLOT(TreeWidgetInit()));
+    GroupAddDialog GroupAddDlg;   
     GroupAddDlg.exec();
 }
 
 void MainWindow::on_actionGroupDelete_triggered()
 {
-
+    if(!ui->treeWidget->currentItem()->text(0).isEmpty() || !ui->treeWidget->currentItem()->text(0)==tr("AllAddress") ||  !ui->treeWidget->currentItem()->text(0)==tr("NoNameAddress"))
+    {
+        int ret = QMessageBox::warning(this, tr("Group Delete"),
+                                       tr("Do you want to delete the includes Addresses?"),
+                                       QMessageBox::YesAll| QMessageBox::NoToAll|QMessageBox::No,
+                                       QMessageBox::YesAll);
+        switch(ret)
+        {
+        case QMessageBox::YesAll:
+            GroupDelete(ALL_DELETE);
+            break;
+        case QMessageBox::NoToAll:
+            GroupDelete(GROUP_DELETE);
+            break;
+        }
+    }
 }
 
 void MainWindow::on_actionUpload_triggered()

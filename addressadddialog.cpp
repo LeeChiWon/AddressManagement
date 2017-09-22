@@ -9,6 +9,7 @@ AddressAddDialog::AddressAddDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     UIInit();
+    ComboInit();
 }
 
 AddressAddDialog::~AddressAddDialog()
@@ -34,7 +35,15 @@ void AddressAddDialog::UIInit()
     ui->lineEdit_EMail_3->setVisible(false);
     ui->lineEdit_PhoneNumber_2->setVisible(false);
     ui->lineEdit_PhoneNumber_3->setVisible(false);
+    ui->lineEdit_CompanyName->setPlaceholderText(tr("CompanyName"));
+    ui->lineEdit_CompanyPosition->setPlaceholderText(tr("CompanyPosition"));
     ui->lineEdit_CompanyDepartment->setPlaceholderText(tr("CompanyDepartment"));
+    ui->lineEdit_AddressNumber->setPlaceholderText(tr("AddressNumber"));
+    ui->lineEdit_AddressNumber_2->setPlaceholderText(tr("AddressNumber"));
+    ui->lineEdit_AddressNumber_3->setPlaceholderText(tr("AddressNumber"));
+    ui->textEdit_Address->setPlaceholderText(tr("Detail Address"));
+    ui->textEdit_Address_2->setPlaceholderText(tr("Detail Address"));
+    ui->textEdit_Address_3->setPlaceholderText(tr("Detail Address"));
     ui->pushButton_AddressNumberDelete->setVisible(false);
     ui->pushButton_EMailDelete->setVisible(false);
     ui->pushButton_PhoneNumberDelete->setVisible(false);
@@ -111,6 +120,36 @@ void AddressAddDialog::DBSave()
                 break;
             }
         }
+        DB.close();
+    }
+    catch(QException &e)
+    {
+        QMessageBox::warning(this,tr("Warning"),QString("%1\n%2").arg(tr("Database Error!"),e.what()),QMessageBox::Ok);
+        QSqlDatabase::removeDatabase("MainDB");
+    }
+}
+
+void AddressAddDialog::ComboInit()
+{
+    ui->comboBox_Group->clear();
+    ui->comboBox_Group->addItem("");
+    QSqlDatabase DB=QSqlDatabase::database("MainDB");
+    try
+    {
+        if(!DB.isOpen())
+        {
+            QSqlDatabase::removeDatabase("MainDB");
+            emit DBInit();
+        }
+
+        QSqlQuery query(DB);
+        query.exec(QString("select * from group_management"));
+
+        while(query.next())
+        {
+            ui->comboBox_Group->addItem(query.value("groupname").toString());
+        }
+
         DB.close();
     }
     catch(QException &e)
@@ -277,4 +316,12 @@ void AddressAddDialog::on_pushButton_Save_clicked()
 void AddressAddDialog::on_pushButton_Cancel_clicked()
 {
     this->close();
+}
+
+void AddressAddDialog::on_pushButton_GroupAdd_clicked()
+{
+    GroupAddDialog GroupAddDlg;
+    connect(&GroupAddDlg,SIGNAL(ComboInit()),this,SLOT(ComboInit()));
+    GroupAddDlg.Combobox=true;
+    GroupAddDlg.exec();
 }

@@ -14,7 +14,7 @@
    <string>AddressManagement</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="addressmanagement.qrc">
     <normaloff>:/img/addressmanagement.png</normaloff>:/img/addressmanagement.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -48,6 +48,13 @@
         <height>16777215</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <column>
        <property name="text">
         <string notr="true">1</string>
@@ -79,7 +86,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAddressAdd">
    <property name="icon">
-    <iconset>
+    <iconset resource="addressmanagement.qrc">
      <normaloff>:/img/add.png</normaloff>:/img/add.png</iconset>
    </property>
    <property name="text">
@@ -91,7 +98,7 @@
   </action>
   <action name="actionAddressDelete">
    <property name="icon">
-    <iconset>
+    <iconset resource="addressmanagement.qrc">
      <normaloff>:/img/delete.png</normaloff>:/img/delete.png</iconset>
    </property>
    <property name="text">
@@ -103,7 +110,7 @@
   </action>
   <action name="actionGroupAdd">
    <property name="icon">
-    <iconset>
+    <iconset resource="addressmanagement.qrc">
      <normaloff>:/img/group_add.png</normaloff>:/img/group_add.png</iconset>
    </property>
    <property name="text">
@@ -115,7 +122,7 @@
   </action>
   <action name="actionGroupDelete">
    <property name="icon">
-    <iconset>
+    <iconset resource="addressmanagement.qrc">
      <normaloff>:/img/group_delete.png</normaloff>:/img/group_delete.png</iconset>
    </property>
    <property name="text">
@@ -127,7 +134,7 @@
   </action>
   <action name="actionUpload">
    <property name="icon">
-    <iconset>
+    <iconset resource="addressmanagement.qrc">
      <normaloff>:/img/upload.png</normaloff>:/img/upload.png</iconset>
    </property>
    <property name="text">
@@ -139,7 +146,7 @@
   </action>
   <action name="actionDownload">
    <property name="icon">
-    <iconset>
+    <iconset resource="addressmanagement.qrc">
      <normaloff>:/img/download.png</normaloff>:/img/download.png</iconset>
    </property>
    <property name="text">
@@ -151,7 +158,7 @@
   </action>
   <action name="actionDuplicateCheck">
    <property name="icon">
-    <iconset>
+    <iconset resource="addressmanagement.qrc">
      <normaloff>:/img/duplication.png</normaloff>:/img/duplication.png</iconset>
    </property>
    <property name="text">
@@ -163,7 +170,7 @@
   </action>
   <action name="actionExit">
    <property name="icon">
-    <iconset>
+    <iconset resource="addressmanagement.qrc">
      <normaloff>:/img/exit.png</normaloff>:/img/exit.png</iconset>
    </property>
    <property name="text">
@@ -175,6 +182,8 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="addressmanagement.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "define.h"
+#include "groupadddialog.h"
 
 namespace Ui {
 class AddressAddDialog;
@@ -34,7 +35,9 @@ private slots:
     void on_pushButton_AddressNumberAdd_clicked();
     void on_pushButton_AddressNumberDelete_clicked();
     void on_pushButton_Save_clicked();
-    void on_pushButton_Cancel_clicked();   
+    void on_pushButton_Cancel_clicked();
+    void on_pushButton_GroupAdd_clicked();
+    void ComboInit();
 
 private:
     Ui::AddressAddDialog *ui;
@@ -46,7 +49,6 @@ private:
     void UIInit();
     int Calculation(int,int);
     void DBSave();
-
 };
 
 #endif // ADDRESSADDDIALOG_H

@@ -16,14 +16,16 @@ public:
     explicit GroupAddDialog(QWidget *parent = 0);
     ~GroupAddDialog();
 
+    bool Combobox;
+
 signals:
     void TreeWidgetInit();
     void DBInit();
+    void ComboInit();
 
 private slots:
-    void on_pushButton_clicked();
-
     void on_pushButton_Close_clicked();
+    void on_pushButton_Add_clicked();
 
 private:
     Ui::GroupAddDialog *ui;
