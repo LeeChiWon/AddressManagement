@@ -105,6 +105,43 @@ void MainWindow::GroupDelete(int Select)
     }
 }
 
+void MainWindow::TableWidgetShow(QString QueryStr)
+{
+    QSqlDatabase DB=QSqlDatabase::database("MainDB");
+    TableWidgetInit();
+    try
+    {
+        if(!DB.isOpen())
+        {
+            QSqlDatabase::removeDatabase("MainDB");
+            DBInit();
+        }
+
+        QSqlQuery query(DB);
+        query.exec(QueryStr);
+
+        while(query.next())
+        {
+            ui->tableWidget->setRowCount(ui->tableWidget->rowCount()+1);
+            ui->tableWidget->setItem(ui->tableWidget->rowCount()-1,0,new QTableWidgetItem(query.value("name").toString()));
+            ui->tableWidget->setItem(ui->tableWidget->rowCount()-1,1,new QTableWidgetItem(query.value("phonenumber").toString()));
+            ui->tableWidget->setItem(ui->tableWidget->rowCount()-1,2,new QTableWidgetItem(query.value("email").toString()));
+            ui->tableWidget->setItem(ui->tableWidget->rowCount()-1,3,new QTableWidgetItem(query.value("companyname").toString()));
+            ui->tableWidget->setItem(ui->tableWidget->rowCount()-1,4,new QTableWidgetItem(query.value("department").toString()));
+            ui->tableWidget->setItem(ui->tableWidget->rowCount()-1,5,new QTableWidgetItem(query.value("position").toString()));
+        }
+
+        ui->tableWidget->resizeRowsToContents();
+        ui->tableWidget->resizeColumnsToContents();
+        DB.close();
+    }
+    catch(QException &e)
+    {
+        QMessageBox::warning(this,tr("Warning"),QString("%1\n%2").arg(tr("Database Error!"),e.what()),QMessageBox::Ok);
+        QSqlDatabase::removeDatabase("MainDB");
+    }
+}
+
 void MainWindow::TreeWidgetInit()
 {
     ui->treeWidget->clear();
@@ -115,7 +152,7 @@ void MainWindow::TreeWidgetInit()
     QStringList GroupText;
 
     QTreeWidgetItem *item,*subitem;
-
+    QBrush brush (Qt::red);
     QSqlDatabase DB=QSqlDatabase::database("MainDB");
     QMap<QString,int> GroupMap;
     QString Count;
@@ -152,24 +189,27 @@ void MainWindow::TreeWidgetInit()
         for(int i=0; i<TreeText.count(); i++)
         {
             item=new QTreeWidgetItem();
-
+            item->setForeground( 1 , brush );
             switch(i)
             {
             case ALL:
                 item->setText(0,TreeText.at(i));
                 item->setText(1,QString::number(AllCount));
+
                 for(int j=0; j<GroupText.count(); j++)
                 {
                     Count=QString::number(GroupMap.value(GroupText.at(j)));
                     subitem=new QTreeWidgetItem();
                     subitem->setText(0,GroupText.at(j));
                     subitem->setText(1,Count);
+                    subitem->setForeground( 1 , brush );
                     item->addChild(subitem);
                 }
                 break;
             case NONAME:
                 item->setText(0,TreeText.at(i));
                 item->setText(1,QString::number(NoNameCount));
+                item->setForeground( 1 , brush );
                 break;
             }      
             ui->treeWidget->addTopLevelItem(item);
@@ -211,10 +251,10 @@ void MainWindow::on_actionGroupAdd_triggered()
 
 void MainWindow::on_actionGroupDelete_triggered()
 {
-    if(!ui->treeWidget->currentItem()->text(0).isEmpty() || ui->treeWidget->currentItem()->text(0).isEmpty()!=tr("AllAddress") ||  ui->treeWidget->currentItem()->text(0)!=tr("NoNameAddress"))
+    if(!ui->treeWidget->currentItem()->text(0).isEmpty() && ui->treeWidget->currentItem()->text(0)!=tr("AllAddress") &&  ui->treeWidget->currentItem()->text(0)!=tr("NoNameAddress"))
     {
         int ret = QMessageBox::warning(this, tr("Group Delete"),
-                                       tr("Do you want to delete the includes Addresses?"),
+                                       tr("Do you want to delete the includes Addresses?\nYes=All, No=only Group, Cancel=Cancel"),
                                        QMessageBox::Yes| QMessageBox::No|QMessageBox::Cancel,
                                        QMessageBox::Yes);
         switch(ret)
@@ -286,5 +326,30 @@ void MainWindow::DBInit()
 
 void MainWindow::on_pushButton_Search_clicked()
 {
+    if(ui->lineEdit_Search->text().isEmpty())
+    {
+        QMessageBox::information(this,tr("Search"),tr("Input the search word."),QMessageBox::Ok);
+        return;
+    }
 
+    TableWidgetShow(QString("select name, phonenumber, email, companyname, department, position from address_management where name like '\%%1\%' or phonenumber like '\%%1\%' "
+                            "or email like '\%%1\%' or companyname like '\%%1\%' or department like '\%%1\%' or position like '\%%1\%'"
+                            "or phonenumber2 like '\%%1\%' or phonenumber3 like '\%%1\%' or email2 like '\%%1\%' or email3 like '\%%1\%'"));
+}
+
+void MainWindow::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
+{
+    if(item->text(0)==tr("AllAddress"))
+    {
+        TableWidgetShow(QString("select name, phonenumber, email, companyname, department, position from address_management where name not null"));
+    }
+
+    else if(item->text(0)==tr("NoNameAddress"))
+    {
+        TableWidgetShow(QString("select name, phonenumber, email, companyname, department, position from address_management where name=''"));
+    }
+    else
+    {
+        TableWidgetShow(QString("select name, phonenumber, email, companyname, department, position from address_management where grouping='%1'").arg(item->text(0)));
+    }
 }

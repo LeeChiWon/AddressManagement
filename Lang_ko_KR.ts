@@ -298,35 +298,43 @@ OK:덮어쓰기, CANCEL:새로운추가</translation>
     <message>
         <location filename="mainwindow.cpp" line="114"/>
         <location filename="mainwindow.cpp" line="214"/>
+        <location filename="mainwindow.cpp" line="216"/>
         <source>AllAddress</source>
         <translation>모든 연락처</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="114"/>
-        <location filename="mainwindow.cpp" line="214"/>
+        <location filename="mainwindow.cpp" line="216"/>
         <source>NoNameAddress</source>
         <translation>이름없는 연락처</translation>
     </message>
     <message>
+        <location filename="mainwindow.cpp" line="219"/>
+        <source>Do you want to delete the includes Addresses?
+Yes=All, No=only Group, Cancel=Cancel</source>
+        <translation>그룹에 포함된 연락처도 삭제하시겠습니까?
+Yes=모두삭제, No=그룹만 삭제, Cancel=취소</translation>
+    </message>
+    <message>
         <location filename="mainwindow.cpp" line="103"/>
         <location filename="mainwindow.cpp" line="183"/>
-        <location filename="mainwindow.cpp" line="260"/>
-        <location filename="mainwindow.cpp" line="263"/>
-        <location filename="mainwindow.cpp" line="281"/>
+        <location filename="mainwindow.cpp" line="262"/>
+        <location filename="mainwindow.cpp" line="265"/>
+        <location filename="mainwindow.cpp" line="283"/>
         <source>Warning</source>
         <translation>경고</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="103"/>
         <location filename="mainwindow.cpp" line="183"/>
-        <location filename="mainwindow.cpp" line="281"/>
+        <location filename="mainwindow.cpp" line="283"/>
         <source>Database Error!</source>
         <translation>데이터베이스 에러!</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="90"/>
         <location filename="mainwindow.cpp" line="94"/>
-        <location filename="mainwindow.cpp" line="216"/>
+        <location filename="mainwindow.cpp" line="218"/>
         <source>Group Delete</source>
         <translation>그룹 삭제</translation>
     </message>
@@ -366,18 +374,17 @@ OK:덮어쓰기, CANCEL:새로운추가</translation>
         <translation>직급</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="217"/>
         <source>Do you want to delete the includes Addresses?</source>
-        <translation>그룹에 포함된 연락처도 삭제하시겠습니까?</translation>
+        <translation type="vanished">그룹에 포함된 연락처도 삭제하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="260"/>
-        <location filename="mainwindow.cpp" line="263"/>
+        <location filename="mainwindow.cpp" line="262"/>
+        <location filename="mainwindow.cpp" line="265"/>
         <source>Database open error!</source>
         <translation>데이터베이스 열기 에러!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="260"/>
+        <location filename="mainwindow.cpp" line="262"/>
         <source>Database is not exist!</source>
         <translation>데이터베이스가 존재하지 않습니다!</translation>
     </message>
