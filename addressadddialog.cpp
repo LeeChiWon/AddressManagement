@@ -10,6 +10,9 @@ AddressAddDialog::AddressAddDialog(QWidget *parent) :
     ui->setupUi(this);
     UIInit();
     ComboInit();
+    ui->comboBox_Address->addItems(QStringList()<<tr("Home")<<tr("Company")<<tr("Etc"));
+    ui->comboBox_Address_2->addItems(QStringList()<<tr("Home")<<tr("Company")<<tr("Etc"));
+    ui->comboBox_Address_3->addItems(QStringList()<<tr("Home")<<tr("Company")<<tr("Etc"));
 }
 
 AddressAddDialog::~AddressAddDialog()
@@ -95,7 +98,7 @@ void AddressAddDialog::DBSave()
         {
             int ret = QMessageBox::information(this, tr("Duplicate PhoneNumber"),
                                            tr("Do you want Overwrite?\nOK:Overwrite, CANCEL:New"),
-                                           QMessageBox::Ok| QMessageBox::Cancel,
+                                           QMessageBox::Ok | QMessageBox::Cancel,
                                            QMessageBox::Ok);
             switch(ret)
             {
@@ -120,6 +123,7 @@ void AddressAddDialog::DBSave()
                 break;
             }
         }
+        QMessageBox::information(this,tr("DB Save"),tr("DB is Saved."),QMessageBox::Ok);
         DB.close();
     }
     catch(QException &e)
@@ -311,6 +315,7 @@ void AddressAddDialog::on_pushButton_AddressNumberDelete_clicked()
 void AddressAddDialog::on_pushButton_Save_clicked()
 {    
     DBSave();
+    UIInit();
 }
 
 void AddressAddDialog::on_pushButton_Cancel_clicked()

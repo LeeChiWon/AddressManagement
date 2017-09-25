@@ -43,13 +43,18 @@ void GroupAddDialog::on_pushButton_Add_clicked()
         query.exec(QString("insert into group_management(groupname) select '%1' where not exists(select * from group_management where groupname='%1')").arg(ui->lineEdit->text()));
 
         QMessageBox::information(this,tr("Group Add"),QString("%1 %2").arg(ui->lineEdit->text(),tr(" is in Group.")));
-        emit TreeWidgetInit();
-
-        DB.close();
+        emit TreeWidgetInit();        
     }
     catch(QException &e)
     {
         QMessageBox::warning(this,tr("Warning"),QString("%1\n%2").arg(tr("Database Error!"),e.what()),QMessageBox::Ok);
         QSqlDatabase::removeDatabase("MainDB");
     }
+    DB.close();
+    UIInit();
+}
+
+void GroupAddDialog::UIInit()
+{
+    ui->lineEdit->clear();
 }

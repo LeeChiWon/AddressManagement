@@ -36,6 +36,8 @@ private slots:
     void TableWidgetInit();
     void on_pushButton_Search_clicked();
     void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
+    void on_lineEdit_Search_returnPressed();
+    void sectionClicked(int column);
 
 private:
 
@@ -45,6 +47,7 @@ private:
     void DBBackup();
     void GroupDelete(int);
     void TableWidgetShow(QString);
+    bool bSortChanged;
 };
 
 #endif // MAINWINDOW_H

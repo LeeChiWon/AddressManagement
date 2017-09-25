@@ -14,11 +14,30 @@ MainWindow::MainWindow(QWidget *parent) :
     TreeWidgetInit();
     TableWidgetInit();
     ui->lineEdit_Search->setPlaceholderText(tr("Address Search"));
+    connect(ui->tableWidget->horizontalHeader(),SIGNAL(sectionClicked(int)),this,SLOT(sectionClicked(int)));
 }
 
 MainWindow::~MainWindow()
 {    
     delete ui;
+}
+
+void MainWindow::sectionClicked(int column)
+{
+    ui->tableWidget->setSortingEnabled(true);
+
+    if(!bSortChanged)
+    {
+        ui->tableWidget->sortByColumn(column,Qt::AscendingOrder);
+        bSortChanged=true;
+    }
+
+    else
+    {
+        ui->tableWidget->sortByColumn(column,Qt::DescendingOrder);
+        bSortChanged=false;
+    }
+    ui->tableWidget->setSortingEnabled(false);
 }
 
 void MainWindow::on_actionExit_triggered()
@@ -131,8 +150,9 @@ void MainWindow::TableWidgetShow(QString QueryStr)
             ui->tableWidget->setItem(ui->tableWidget->rowCount()-1,5,new QTableWidgetItem(query.value("position").toString()));
         }
 
-        ui->tableWidget->resizeRowsToContents();
         ui->tableWidget->resizeColumnsToContents();
+        ui->tableWidget->resizeRowsToContents();
+
         DB.close();
     }
     catch(QException &e)
@@ -174,11 +194,11 @@ void MainWindow::TreeWidgetInit()
         }
 
 
-        query.exec(QString("select grouping, count(*) as count from group_management group by grouping"));
+        query.exec(QString("select grouping, count(*) as count from address_management group by grouping"));
 
         while(query.next())
         {
-            GroupMap.insert(query.value("grouping").toString(),query.value("count").toInt());
+            GroupMap.insert(query.value("grouping").toString(),query.value("count").toInt());           
         }
         query.exec(QString("select sum(case when name not null then 1 end) as allname, sum(case when name=null then 1 end) as noname from address_management"));
         query.next();
@@ -228,6 +248,7 @@ void MainWindow::TreeWidgetInit()
 void MainWindow::TableWidgetInit()
 {
     ui->tableWidget->clear();
+    ui->tableWidget->setColumnCount(6);
     ui->tableWidget->setHorizontalHeaderLabels(QStringList()<<tr("Name")<<tr("PhoneNumber")<<tr("EMail")<<tr("Company")<<tr("Department")<<tr("Position"));
     ui->tableWidget->setRowCount(0);
 }
@@ -334,7 +355,11 @@ void MainWindow::on_pushButton_Search_clicked()
 
     TableWidgetShow(QString("select name, phonenumber, email, companyname, department, position from address_management where name like '\%%1\%' or phonenumber like '\%%1\%' "
                             "or email like '\%%1\%' or companyname like '\%%1\%' or department like '\%%1\%' or position like '\%%1\%'"
-                            "or phonenumber2 like '\%%1\%' or phonenumber3 like '\%%1\%' or email2 like '\%%1\%' or email3 like '\%%1\%'"));
+                            "or phonenumber2 like '\%%1\%' or phonenumber3 like '\%%1\%' or email2 like '\%%1\%' or email3 like '\%%1\%'").arg(ui->lineEdit_Search->text()));
+    if(ui->tableWidget->rowCount()<=0)
+    {
+        QMessageBox::information(this,tr("Search Result"),tr("Search word is nothing."),QMessageBox::Ok);
+    }
 }
 
 void MainWindow::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
@@ -352,4 +377,9 @@ void MainWindow::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
     {
         TableWidgetShow(QString("select name, phonenumber, email, companyname, department, position from address_management where grouping='%1'").arg(item->text(0)));
     }
+}
+
+void MainWindow::on_lineEdit_Search_returnPressed()
+{
+    on_pushButton_Search_clicked();
 }

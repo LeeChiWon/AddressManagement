@@ -29,6 +29,8 @@ private slots:
 
 private:
     Ui::GroupAddDialog *ui;
+
+    void UIInit();
 };
 
 #endif // GROUPADDDIALOG_H

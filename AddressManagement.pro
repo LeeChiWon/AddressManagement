@@ -33,8 +33,8 @@ HEADERS  += mainwindow.h \
     addressadddialog.h \
     groupadddialog.h
 
-FORMS    += mainwindow.ui\
-            addressadddialog.ui \
+FORMS    += mainwindow.ui \
+    addressadddialog.ui \
     groupadddialog.ui
 
 RESOURCES += \
