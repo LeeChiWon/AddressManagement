@@ -24,6 +24,8 @@ protected:
 
 signals:
     void DBInit();
+    void TreeWidgetInit();
+    void TableWidgetUpdate();
 
 private slots:
     void on_lineEdit_CompanyDepartment_selectionChanged();

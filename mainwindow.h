@@ -5,6 +5,7 @@
 #include "define.h"
 #include "addressadddialog.h"
 #include "groupadddialog.h"
+#include "tableprinter.h"
 
 namespace Ui {
 class MainWindow;
@@ -38,16 +39,22 @@ private slots:
     void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
     void on_lineEdit_Search_returnPressed();
     void sectionClicked(int column);
+    void TableWidgetUpdate();
+    void TableWidgetContextMenuShow(const QPoint &pos);
+    void on_actionPrinter_triggered();
+    void TableWidgetPrint(QPrinter*);
 
 private:
-
     QSettings *Setting;
+    QMenu *TableWidgetContextMenu;
 
     void SettingInit();
     void DBBackup();
     void GroupDelete(int);
     void TableWidgetShow(QString);
     bool bSortChanged;
+    void TableWidgetContextMenuInit();
+    void DBDelete(QString,QString);
 };
 
 #endif // MAINWINDOW_H

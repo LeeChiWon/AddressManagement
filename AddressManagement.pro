@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui xlsx sql
+QT       += core gui xlsx sql printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -26,12 +26,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp\
         addressadddialog.cpp \
-    groupadddialog.cpp
+    groupadddialog.cpp \
+    tableprinter.cpp
 
 HEADERS  += mainwindow.h \
     define.h\
     addressadddialog.h \
-    groupadddialog.h
+    groupadddialog.h \
+    tableprinter.h
 
 FORMS    += mainwindow.ui \
     addressadddialog.ui \

@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "define.h"
 
+
 namespace Ui {
 class GroupAddDialog;
 }

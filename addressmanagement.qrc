@@ -13,5 +13,6 @@
         <file>img/minus.png</file>
         <file>img/plus.png</file>
         <file>img/search.png</file>
+        <file>img/printer.png</file>
     </qresource>
 </RCC>

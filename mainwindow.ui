@@ -43,6 +43,9 @@
         <bold>true</bold>
        </font>
       </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::CustomContextMenu</enum>
+      </property>
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
       </property>
@@ -239,6 +242,18 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionPrinter">
+   <property name="icon">
+    <iconset resource="addressmanagement.qrc">
+     <normaloff>:/img/printer.png</normaloff>:/img/printer.png</iconset>
+   </property>
+   <property name="text">
+    <string>Printer</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
    </property>
   </action>
  </widget>
