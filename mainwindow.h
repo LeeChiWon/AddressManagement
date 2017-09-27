@@ -6,6 +6,8 @@
 #include "addressadddialog.h"
 #include "groupadddialog.h"
 #include "tableprinter.h"
+#include "addressdetaildialog.h"
+#include "addressdownloaddialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -43,6 +45,7 @@ private slots:
     void TableWidgetContextMenuShow(const QPoint &pos);
     void on_actionPrinter_triggered();
     void TableWidgetPrint(QPrinter*);
+    void on_tableWidget_itemDoubleClicked(QTableWidgetItem *item);
 
 private:
     QSettings *Setting;

@@ -72,9 +72,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
     case QMessageBox::Ok:
         DBBackup();
         Setting->setValue("Configuration/Geometry",saveGeometry());
+        event->accept();
         break;
-    }
-    event->accept();
+    }    
 }
 
 void MainWindow::SettingInit()
@@ -310,17 +310,26 @@ void MainWindow::on_actionAddressAdd_triggered()
 
 void MainWindow::on_actionAddressDelete_triggered()
 {
-    QModelIndexList indexes = ui->tableWidget->selectionModel()->selectedRows(0);
-    QModelIndexList indexes2 = ui->tableWidget->selectionModel()->selectedRows(1);
-
-    for (int i=indexes.count()-1; i>=0; i--)
+    int ret = QMessageBox::warning(this, tr("Address Delete"),
+                                   tr("Do you want delete address?"),
+                                   QMessageBox::Ok| QMessageBox::Cancel,
+                                   QMessageBox::Ok);
+    switch(ret)
     {
-        DBDelete(indexes.at(i).data().toString(),indexes2.at(i).data().toString());
-        ui->tableWidget->removeRow(indexes.at(i).row());
+    case QMessageBox::Ok:
+        QModelIndexList indexes = ui->tableWidget->selectionModel()->selectedRows(0);
+        QModelIndexList indexes2 = ui->tableWidget->selectionModel()->selectedRows(1);
+
+        for (int i=indexes.count()-1; i>=0; i--)
+        {
+            DBDelete(indexes.at(i).data().toString(),indexes2.at(i).data().toString());
+            ui->tableWidget->removeRow(indexes.at(i).row());
+        }
+        ui->tableWidget->resizeColumnsToContents();
+        ui->tableWidget->resizeRowsToContents();
+        TreeWidgetInit();
+        break;
     }
-    ui->tableWidget->resizeColumnsToContents();
-    ui->tableWidget->resizeRowsToContents();
-    TreeWidgetInit();
 }
 
 void MainWindow::on_actionGroupAdd_triggered()
@@ -357,7 +366,8 @@ void MainWindow::on_actionUpload_triggered()
 
 void MainWindow::on_actionDownload_triggered()
 {
-
+    AddressDownloadDialog AddressDownloadDlg;
+    AddressDownloadDlg.exec();
 }
 
 void MainWindow::on_actionDuplicateCheck_triggered()
@@ -465,4 +475,13 @@ void MainWindow::TableWidgetPrint(QPrinter *printer)
         QMessageBox::warning(this,tr("Error"),tablePrinter.lastError(),QMessageBox::Ok);
     }
     painter.end();
+}
+
+void MainWindow::on_tableWidget_itemDoubleClicked(QTableWidgetItem *item)
+{
+    AddressDetailDialog AddressDetailDlg;
+    connect(&AddressDetailDlg,SIGNAL(DBInit()),this,SLOT(DBInit()));
+    connect(&AddressDetailDlg,SIGNAL(TableWidgetUpdate()),this,SLOT(TableWidgetUpdate()));
+    AddressDetailDlg.DBShow(QString("select * from address_management where name='%1' and phonenumber='%2'").arg(ui->tableWidget->item(item->row(),0)->text(),ui->tableWidget->item(item->row(),1)->text()));
+    AddressDetailDlg.exec();
 }

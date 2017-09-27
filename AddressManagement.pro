@@ -27,17 +27,23 @@ SOURCES += main.cpp\
         mainwindow.cpp\
         addressadddialog.cpp \
     groupadddialog.cpp \
-    tableprinter.cpp
+    tableprinter.cpp \
+    addressdetaildialog.cpp \
+    addressdownloaddialog.cpp
 
 HEADERS  += mainwindow.h \
     define.h\
     addressadddialog.h \
     groupadddialog.h \
-    tableprinter.h
+    tableprinter.h \
+    addressdetaildialog.h \
+    addressdownloaddialog.h
 
 FORMS    += mainwindow.ui \
     addressadddialog.ui \
-    groupadddialog.ui
+    groupadddialog.ui \
+    addressdetaildialog.ui \
+    addressdownloaddialog.ui
 
 RESOURCES += \
     addressmanagement.qrc
