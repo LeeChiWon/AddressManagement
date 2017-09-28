@@ -58,6 +58,7 @@ private:
     bool bSortChanged;
     void TableWidgetContextMenuInit();
     void DBDelete(QString,QString);
+    void ExcelUpload(QString);
 };
 
 #endif // MAINWINDOW_H

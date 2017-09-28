@@ -25,7 +25,7 @@ void AddressDetailDialog::DBShow(QString QueryStr)
             QSqlDatabase::removeDatabase("MainDB");
             emit DBInit();
         }
-
+        DB.transaction();
         QSqlQuery query(DB);
         query.exec(QueryStr);
 
@@ -55,6 +55,7 @@ void AddressDetailDialog::DBShow(QString QueryStr)
             BeforeName=ui->lineEdit_Name->text();
             BeforePhoneNumber=ui->lineEdit_PhoneNumber->text();
         }
+        DB.commit();
         DB.close();
     }
     catch(QException &e)
@@ -75,7 +76,7 @@ void AddressDetailDialog::on_pushButton_Modify_clicked()
             QSqlDatabase::removeDatabase("MainDB");
             emit DBInit();
         }
-
+        DB.transaction();
         QSqlQuery query(DB);
         query.exec(QString("update address_management set name='%1',phonenumber='%2',phonenumber2='%3',phonenumber3='%4',email='%5',email2='%6',email3='%7',grouping='%8'"
                            ",companyname='%9',department='%10',position='%11',addresstype='%12',addressnumber='%13',address='%14'"
@@ -87,6 +88,7 @@ void AddressDetailDialog::on_pushButton_Modify_clicked()
                    .arg(ui->comboBox_Address_3->currentText(),ui->lineEdit_AddressNumber_3->text(),ui->textEdit_Address_3->toPlainText
                         (),ui->textEdit_Memo->toPlainText())
                    .arg(BeforeName,BeforePhoneNumber));
+        DB.commit();
         DB.close();
         QMessageBox::information(this,tr("Update Address"),tr("Address is Updated."),QMessageBox::Ok);
         emit TableWidgetUpdate();
@@ -119,7 +121,7 @@ void AddressDetailDialog::UIInit()
             QSqlDatabase::removeDatabase("MainDB");
             emit DBInit();
         }
-
+        DB.transaction();
         QSqlQuery query(DB);
         query.exec(QString("select * from group_management"));
 
@@ -127,6 +129,7 @@ void AddressDetailDialog::UIInit()
         {
             ui->comboBox_Group->addItem(query.value("groupname").toString());
         }
+        DB.commit();
         DB.close();
     }
     catch(QException &e)

@@ -38,7 +38,7 @@ void GroupAddDialog::on_pushButton_Add_clicked()
             QSqlDatabase::removeDatabase("MainDB");
             emit DBInit();
         }
-
+        DB.transaction();
         QSqlQuery query(DB);
         query.exec(QString("insert into group_management(groupname) select '%1' where not exists(select * from group_management where groupname='%1')").arg(ui->lineEdit->text()));
 
@@ -50,6 +50,7 @@ void GroupAddDialog::on_pushButton_Add_clicked()
         QMessageBox::warning(this,tr("Warning"),QString("%1\n%2").arg(tr("Database Error!"),e.what()),QMessageBox::Ok);
         QSqlDatabase::removeDatabase("MainDB");
     }
+    DB.commit();
     DB.close();
     UIInit();
 }

@@ -28,6 +28,9 @@ private:
     Ui::AddressDownloadDialog *ui;
 
     void ListWidgetInit();
+    QString ListSelect();
+    int ListCount;
+    QStringList ListNames;
 };
 
 #endif // ADDRESSDOWNLOADDIALOG_H

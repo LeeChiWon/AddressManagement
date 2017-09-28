@@ -330,6 +330,9 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::ExtendedSelection</enum>
+   </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -364,6 +367,9 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::ExtendedSelection</enum>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_Add">

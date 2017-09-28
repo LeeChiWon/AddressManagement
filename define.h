@@ -8,6 +8,7 @@
 #include <QtPrintSupport/QPrinter>
 #include <QtPrintSupport/QPrintDialog>
 #include <QtPrintSupport/QPrintPreviewDialog>
+#include <QtXlsx>
 
 enum CALCULATION
 {

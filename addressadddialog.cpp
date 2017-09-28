@@ -100,7 +100,7 @@ void AddressAddDialog::DBSave()
             QSqlDatabase::removeDatabase("MainDB");
             emit DBInit();
         }
-
+        DB.transaction();
         QSqlQuery query(DB);
         if(!ui->lineEdit_PhoneNumber->text().isEmpty())
         {
@@ -124,7 +124,7 @@ void AddressAddDialog::DBSave()
             QueryStr.append(QString("phonenumber='%1' or phonenumber2='%1' or phonenumber3='%1'").arg(ui->lineEdit_PhoneNumber_3->text()));
         }
         query.exec(QueryStr);
-        qDebug()<<query.lastQuery();
+
         if(!query.next())
         {
             query.exec(QString("insert into address_management(name,phonenumber,phonenumber2,phonenumber3,email,email2,email3,grouping,companyname,department,position,"
@@ -165,6 +165,7 @@ void AddressAddDialog::DBSave()
                            .arg(ui->textEdit_Memo->toPlainText()));
                 break;
             default:
+                DB.commit();
                 DB.close();
                 return;
                 break;
@@ -174,6 +175,7 @@ void AddressAddDialog::DBSave()
         UIInit();
         emit TreeWidgetInit();
         emit TableWidgetUpdate();
+        DB.commit();
         DB.close();
     }
     catch(QException &e)
@@ -195,7 +197,7 @@ void AddressAddDialog::ComboInit()
             QSqlDatabase::removeDatabase("MainDB");
             emit DBInit();
         }
-
+        DB.transaction();
         QSqlQuery query(DB);
         query.exec(QString("select * from group_management"));
 
@@ -203,7 +205,7 @@ void AddressAddDialog::ComboInit()
         {
             ui->comboBox_Group->addItem(query.value("groupname").toString());
         }
-
+        DB.commit();
         DB.close();
     }
     catch(QException &e)

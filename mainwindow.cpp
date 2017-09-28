@@ -74,7 +74,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
         Setting->setValue("Configuration/Geometry",saveGeometry());
         event->accept();
         break;
-    }    
+    }
 }
 
 void MainWindow::SettingInit()
@@ -112,7 +112,7 @@ void MainWindow::GroupDelete(int Select)
             QSqlDatabase::removeDatabase("MainDB");
             DBInit();
         }
-
+        DB.transaction();
         QSqlQuery query(DB);
         query.exec(QString("delete from group_management where groupname='%1'").arg(ui->treeWidget->currentItem()->text(0)));
 
@@ -129,6 +129,7 @@ void MainWindow::GroupDelete(int Select)
         }
 
         TreeWidgetInit();
+        DB.commit();
         DB.close();
     }
     catch(QException &e)
@@ -149,7 +150,7 @@ void MainWindow::TableWidgetShow(QString QueryStr)
             QSqlDatabase::removeDatabase("MainDB");
             DBInit();
         }
-
+        DB .transaction();
         QSqlQuery query(DB);
         query.exec(QueryStr);
 
@@ -166,7 +167,7 @@ void MainWindow::TableWidgetShow(QString QueryStr)
 
         ui->tableWidget->resizeColumnsToContents();
         ui->tableWidget->resizeRowsToContents();
-
+        DB.commit();
         DB.close();
     }
     catch(QException &e)
@@ -196,10 +197,10 @@ void MainWindow::DBDelete(QString Name, QString PhoneNumber)
             QSqlDatabase::removeDatabase("MainDB");
             DBInit();
         }
-
+        DB.transaction();
         QSqlQuery query(DB);
         query.exec(QString("delete from address_management where name='%1' and phonenumber='%2'").arg(Name,PhoneNumber));
-        qDebug()<<query.lastQuery()<<query.lastError();
+        DB.commit();
         DB.close();
     }
     catch(QException &e)
@@ -207,6 +208,65 @@ void MainWindow::DBDelete(QString Name, QString PhoneNumber)
         QMessageBox::warning(this,tr("Warning"),QString("%1\n%2").arg(tr("Database Error!"),e.what()),QMessageBox::Ok);
         QSqlDatabase::removeDatabase("MainDB");
     }
+}
+
+void MainWindow::ExcelUpload(QString FileName)
+{
+    QXlsx::Document xlsx(FileName);
+    QString Temp,QueryStr;
+    QSqlDatabase DB=QSqlDatabase::database("MainDB");
+    int Count=2;
+
+    try
+    {
+        if(!DB.isOpen())
+        {
+            QSqlDatabase::removeDatabase("MainDB");
+            DBInit();
+        }
+
+        DB.transaction();
+        QSqlQuery query(DB);
+
+        while(1)
+        {
+            QueryStr.clear();
+            QueryStr="insert into address_management(name, phonenumber, phonenumber2, phonenumber3, email, email2, email3, grouping, companyname, department, position, addresstype, addressnumber, address"
+                     ", addresstype2, addressnumber2, address2, addresstype3, addressnumber3, address3, memo) values(";
+            if(xlsx.read(QString("A%1").arg(Count)).isNull())
+            {
+                break;
+            }
+
+            for(int j=0; j<21; j++)
+            {
+                if(j==20)
+                {
+                    Temp.append("'"+xlsx.read(Count,j+1).toString()+"'");
+                    break;
+                }
+
+                else
+                {
+                    Temp.append("'"+xlsx.read(Count,j+1).toString()+"',");
+                }
+            }
+            QueryStr.append(Temp);
+            QueryStr.append(")");
+            query.exec(QueryStr);
+            Temp.clear();
+            Count++;
+        }
+
+        DB.commit();
+        DB.close();
+    }
+    catch(QException &e)
+    {
+        QMessageBox::warning(this,tr("Warning"),QString("%1\n%2").arg(tr("Database Error!"),e.what()),QMessageBox::Ok);
+        QSqlDatabase::removeDatabase("MainDB");
+    }
+    xlsx.deleteLater();
 }
 
 void MainWindow::TreeWidgetInit()
@@ -224,6 +284,7 @@ void MainWindow::TreeWidgetInit()
     QMap<QString,int> GroupMap;
     QString Count;
     int AllCount,NoNameCount;
+
     try
     {
         if(!DB.isOpen())
@@ -231,7 +292,7 @@ void MainWindow::TreeWidgetInit()
             QSqlDatabase::removeDatabase("MainDB");
             DBInit();
         }
-
+        DB.transaction();
         QSqlQuery query(DB);
         query.exec(QString("select * from group_management"));
 
@@ -283,6 +344,7 @@ void MainWindow::TreeWidgetInit()
         }
         ui->treeWidget->expandAll();
         ui->treeWidget->resizeColumnToContents(0);
+        DB.commit();
         DB.close();
     }
     catch(QException &e)
@@ -361,7 +423,14 @@ void MainWindow::on_actionGroupDelete_triggered()
 
 void MainWindow::on_actionUpload_triggered()
 {
+    QString FileName = QFileDialog::getOpenFileName(this,tr("Open File"),"c://",tr("Excel File(*.xlsx)"));
 
+    if(!FileName.isNull() || !FileName.isEmpty())
+    {
+        ExcelUpload(FileName);
+        QMessageBox::information(this,tr("Excel Upload"),tr("Upload Complete."),QMessageBox::Ok);
+        TreeWidgetInit();
+    }
 }
 
 void MainWindow::on_actionDownload_triggered()
@@ -397,13 +466,25 @@ void MainWindow::DBInit()
             QSqlDatabase::removeDatabase("MainDB");
             return;
         }
-
+        DB.transaction();
         QSqlQuery query(DB);
         query.exec(QString("create table if not exists address_management (name text, phonenumber text, phonenumber2 text, phonenumber3 text, email text, email2 text, email3 text,"
                            " grouping text, companyname text, department text, position text, addresstype text, addressnumber text, address text, "
-                           "addresstype2 text, addressnumber2 text, address2 text, addresstype3 text, addressnumber3 text, address3 text, memo text)"));
-
-        query.exec(QString("create table if not exists group_management (groupname text not null primary key)"));
+                           "addresstype2 text, addressnumber2 text, address2 text, addresstype3 text, addressnumber3 text, address3 text, memo text, created_date datetime default CURRENT_TIMESTAMP)"));
+        query.exec(QString("create table if not exists group_management (groupname text not null primary key, created_date datetime default CURRENT_TIMESTAMP)"));
+        query.exec(QString("create trigger update_address_management before update on address_management\n"
+                           "begin\n"
+                           "update address_management set created_date = datetime('now','localtime') where rowid = new.rowid;\n"
+                           "end"));
+        query.exec(QString("create trigger insert_address_management after insert on address_management\n"
+                           "begin\n"
+                           "update address_management set created_date = datetime('now','localtime') where rowid = new.rowid;\n"
+                           "end"));
+        query.exec(QString("create trigger insert_group_management after insert on group_management\n"
+                           "begin\n"
+                           "update group_management set created_date = datetime('now','localtime') where rowid = new.rowid;\n"
+                           "end"));
+        DB.commit();
         DB.close();
     }
     catch(QException &e)
