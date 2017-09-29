@@ -214,6 +214,7 @@ void MainWindow::ExcelUpload(QString FileName)
 {
     QXlsx::Document xlsx(FileName);
     QString Temp,QueryStr;
+    QStringList GroupList;
     QSqlDatabase DB=QSqlDatabase::database("MainDB");
     int Count=2;
 
@@ -227,6 +228,12 @@ void MainWindow::ExcelUpload(QString FileName)
 
         DB.transaction();
         QSqlQuery query(DB);
+        query.exec("select * from group_management");
+
+        while(query.next())
+        {
+            GroupList.append(query.value("groupname").toString());
+        }
 
         while(1)
         {
@@ -242,8 +249,26 @@ void MainWindow::ExcelUpload(QString FileName)
             {
                 if(j==20)
                 {
+
                     Temp.append("'"+xlsx.read(Count,j+1).toString()+"'");
                     break;
+                }
+
+                else if(j==7)
+                {
+                    if(xlsx.read(Count,j+1).toString().isEmpty() || xlsx.read(Count,j+1).toString().isNull() || !GroupList.contains(xlsx.read(Count,j+1).toString()))
+                    {
+                        GroupSelectDialog GroupSelectDlg;
+                        GroupSelectDlg.ComboInit(GroupList);
+                        if(GroupSelectDlg.exec()==QDialog::Accepted)
+                        {
+                            Temp.append("'"+GroupSelectDlg.ComboSelected()+"',");
+                        }
+                    }
+                    else
+                    {
+                        Temp.append("'"+xlsx.read(Count,j+1).toString()+"',");
+                    }
                 }
 
                 else

@@ -8,6 +8,7 @@
 #include "tableprinter.h"
 #include "addressdetaildialog.h"
 #include "addressdownloaddialog.h"
+#include "groupselectdialog.h"
 
 namespace Ui {
 class MainWindow;

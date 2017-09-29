@@ -18,6 +18,7 @@ public:
     ~GroupAddDialog();
 
     bool Combobox;
+    void MessageShow();
 
 signals:
     void TreeWidgetInit();

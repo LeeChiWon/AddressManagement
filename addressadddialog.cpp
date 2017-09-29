@@ -92,6 +92,7 @@ void AddressAddDialog::DBSave()
 {
     QSqlDatabase DB=QSqlDatabase::database("MainDB");
     QString QueryStr="select * from address_management where ";
+    QString DuplicationData;
     bool bAddStr=false;
     try
     {
@@ -139,10 +140,12 @@ void AddressAddDialog::DBSave()
 
         else
         {
+            DuplicationData=QString("%1:%2\n%3:%4\n%5:%6\n%7:%8\n%9:%10\n%11:%12\n%13:%14").arg(tr("Name"),query.value("name").toString(),tr("PhoneNumber"),query.value("phonenumber").toString())
+                    .arg(tr("Email"),query.value("email").toString(),tr("GroupName"),query.value("grouping").toString(),tr("AddressType"),query.value("addresstype").toString())
+                    .arg(tr("AddressNumber"),query.value("addressnumber").toString(),tr("Address"),query.value("address").toString());
             int ret = QMessageBox::information(this, tr("Duplicate PhoneNumber"),
-                                               tr("Do you want Overwrite?\nYes:Overwrite, No:New, Cancel:Cancel"),
-                                               QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel,
-                                               QMessageBox::Yes);
+                                               DuplicationData+tr("\nDo you want Overwrite?\nYes:Overwrite, No:Cancel"),
+                                               QMessageBox::Yes | QMessageBox::No,QMessageBox::Yes);
             switch(ret)
             {
             case QMessageBox::Yes:
@@ -153,17 +156,7 @@ void AddressAddDialog::DBSave()
                            .arg(ui->lineEdit_CompanyPosition->text(),ui->comboBox_Address->currentText(),ui->lineEdit_AddressNumber->text(),ui->textEdit_Address->toPlainText(),ui->comboBox_Address_2->currentText())
                            .arg(ui->lineEdit_AddressNumber_2->text(),ui->textEdit_Address_2->toPlainText(),ui->comboBox_Address_3->currentText(),ui->lineEdit_AddressNumber_3->text(),ui->textEdit_Address_3->toPlainText())
                            .arg(ui->textEdit_Memo->toPlainText()));
-                break;
-            case QMessageBox::No:
-                query.exec(QString("insert into address_management(name,phonenumber,phonenumber2,phonenumber3,email,email2,email3,grouping,companyname,department,position,"
-                                   "addresstype,addressnumber,address,addresstype2,addressnumber2,address2,addresstype3,addressnumber3,address3,memo)"
-                                   " values('%1','%2','%3','%4','%5','%6','%7','%8','%9','%10','%11','%12','%13','%14','%15','%16','%17','%18','%19','%20','%21')")
-                           .arg(ui->lineEdit_Name->text(),ui->lineEdit_PhoneNumber->text(),ui->lineEdit_PhoneNumber_2->text(),ui->lineEdit_PhoneNumber_3->text(),ui->lineEdit_EMail->text())
-                           .arg(ui->lineEdit_EMail_2->text(),ui->lineEdit_EMail_3->text(),ui->comboBox_Group->currentText(),ui->lineEdit_CompanyName->text(),ui->lineEdit_CompanyDepartment->text())
-                           .arg(ui->lineEdit_CompanyPosition->text(),ui->comboBox_Address->currentText(),ui->lineEdit_AddressNumber->text(),ui->textEdit_Address->toPlainText(),ui->comboBox_Address_2->currentText())
-                           .arg(ui->lineEdit_AddressNumber_2->text(),ui->textEdit_Address_2->toPlainText(),ui->comboBox_Address_3->currentText(),ui->lineEdit_AddressNumber_3->text(),ui->textEdit_Address_3->toPlainText())
-                           .arg(ui->textEdit_Memo->toPlainText()));
-                break;
+                break;           
             default:
                 DB.commit();
                 DB.close();
