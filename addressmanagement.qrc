@@ -20,5 +20,6 @@
         <file>img/detail.png</file>
         <file>img/leftarrow.png</file>
         <file>img/rightarrow.png</file>
+        <file>img/group_move.png</file>
     </qresource>
 </RCC>

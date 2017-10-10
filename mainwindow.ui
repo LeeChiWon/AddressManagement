@@ -256,6 +256,18 @@
     <string>Ctrl+P</string>
    </property>
   </action>
+  <action name="actionGroupMove">
+   <property name="icon">
+    <iconset resource="addressmanagement.qrc">
+     <normaloff>:/img/group_move.png</normaloff>:/img/group_move.png</iconset>
+   </property>
+   <property name="text">
+    <string>GroupMove</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>

@@ -28,3 +28,24 @@ void GroupSelectDialog::ComboInit(QStringList List)
         ui->comboBox_Group->addItem(ListName);
     }
 }
+
+void GroupSelectDialog::LabelInit(QString String)
+{
+    ui->label->setVisible(false);
+    ui->label_2->setText(String);
+}
+
+void GroupSelectDialog::LabelInit(QStringList List)
+{
+    QString Str;
+    for(int i=0; i<List.count(); i++)
+    {
+        Str.append(List.at(i));
+        if(i<List.count()-1)
+        {
+            Str.append("\n");
+        }
+    }
+    ui->label->setVisible(true);
+    ui->label_2->setText(Str);
+}

@@ -184,6 +184,7 @@ void MainWindow::TableWidgetContextMenuInit()
     TableWidgetContextMenu->addAction(ui->actionAddressAdd);
     TableWidgetContextMenu->addAction(ui->actionAddressDelete);
     TableWidgetContextMenu->addAction(ui->actionPrinter);
+    TableWidgetContextMenu->addAction(ui->actionGroupMove);
 }
 
 void MainWindow::DBDelete(QString Name, QString PhoneNumber)
@@ -213,10 +214,11 @@ void MainWindow::DBDelete(QString Name, QString PhoneNumber)
 void MainWindow::ExcelUpload(QString FileName)
 {
     QXlsx::Document xlsx(FileName);
-    QString Temp,QueryStr;
-    QStringList GroupList;
+    QString QueryStr,DuplicationData;
+    QStringList GroupList,ExcelData;
     QSqlDatabase DB=QSqlDatabase::database("MainDB");
     int Count=2;
+    bool bAddStr=false;
 
     try
     {
@@ -238,8 +240,9 @@ void MainWindow::ExcelUpload(QString FileName)
         while(1)
         {
             QueryStr.clear();
-            QueryStr="insert into address_management(name, phonenumber, phonenumber2, phonenumber3, email, email2, email3, grouping, companyname, department, position, addresstype, addressnumber, address"
-                     ", addresstype2, addressnumber2, address2, addresstype3, addressnumber3, address3, memo) values(";
+            ExcelData.clear();
+            bAddStr=false;
+
             if(xlsx.read(QString("A%1").arg(Count)).isNull())
             {
                 break;
@@ -247,39 +250,97 @@ void MainWindow::ExcelUpload(QString FileName)
 
             for(int j=0; j<21; j++)
             {
-                if(j==20)
-                {
-
-                    Temp.append("'"+xlsx.read(Count,j+1).toString()+"'");
-                    break;
-                }
-
-                else if(j==7)
+                if(j==7)
                 {
                     if(xlsx.read(Count,j+1).toString().isEmpty() || xlsx.read(Count,j+1).toString().isNull() || !GroupList.contains(xlsx.read(Count,j+1).toString()))
                     {
                         GroupSelectDialog GroupSelectDlg;
                         GroupSelectDlg.ComboInit(GroupList);
+                        GroupSelectDlg.LabelInit(QStringList()<<tr("Name")+":"+ExcelData.at(0)<<tr("PhoneNumber")+":"+ExcelData.at(1)
+                                                 <<tr("PhoneNumber2")+":"+ExcelData.at(2)<<tr("PhoneNumber3")+":"+ExcelData.at(3));
                         if(GroupSelectDlg.exec()==QDialog::Accepted)
                         {
-                            Temp.append("'"+GroupSelectDlg.ComboSelected()+"',");
+                            ExcelData.append(GroupSelectDlg.ComboSelected());
+                        }
+                        else
+                        {
+                            ExcelData.append("");
                         }
                     }
                     else
                     {
-                        Temp.append("'"+xlsx.read(Count,j+1).toString()+"',");
+                        ExcelData.append(xlsx.read(Count,j+1).toString());
                     }
+                    qDebug()<<ExcelData.at(j);
                 }
-
                 else
                 {
-                    Temp.append("'"+xlsx.read(Count,j+1).toString()+"',");
+                    ExcelData.append(xlsx.read(Count,j+1).toString());
                 }
             }
-            QueryStr.append(Temp);
-            QueryStr.append(")");
+
+            QueryStr.append("select * from address_management where ");
+            if(!ExcelData.at(1).isEmpty())
+            {
+                QueryStr.append(QString("phonenumber='%1' or phonenumber2='%1' or phonenumber3='%1'").arg(ExcelData.at(1)));
+                bAddStr=true;
+            }
+
+            if(!ExcelData.at(2).isEmpty())
+            {
+                if(bAddStr)
+                {
+                    QueryStr.append(" or ");
+                }
+                QueryStr.append(QString("phonenumber='%1' or phonenumber2='%1' or phonenumber3='%1'").arg(ExcelData.at(2)));
+                bAddStr=true;
+            }
+
+            if(!ExcelData.at(3).isEmpty())
+            {
+                if(bAddStr)
+                {
+                    QueryStr.append(" or ");
+                }
+                QueryStr.append(QString("phonenumber='%1' or phonenumber2='%1' or phonenumber3='%1'").arg(ExcelData.at(3)));
+                bAddStr=true;
+            }
+
             query.exec(QueryStr);
-            Temp.clear();
+
+            if(query.next())
+            {
+                DuplicationData=QString("%1: %2 -> %3\n%4: %5 -> %6\n%7: %8 -> %9\n%10: %11 -> %12\n%13: %14 -> %15\n%16: %17 -> %18\n%19: %20 -> %21\n%22: %23 -> %24\n%25: %26 -> %27").arg(tr("Name"),query.value("name").toString(),ExcelData.at(0),tr("PhoneNumber"),query.value("phonenumber").toString(),ExcelData.at(1))
+                        .arg(tr("PhoneNumber2"),query.value("phonenumber2").toString(),ExcelData.at(2),tr("PhoneNumber3"),query.value("phonenumber3").toString(),ExcelData.at(3))
+                        .arg(tr("Email"),query.value("email").toString(),ExcelData.at(4),tr("GroupName"),query.value("grouping").toString(),ExcelData.at(7),tr("AddressType"),query.value("addresstype").toString(),ExcelData.at(11))
+                        .arg(tr("AddressNumber"),query.value("addressnumber").toString(),ExcelData.at(12),tr("Address"),query.value("address").toString(),ExcelData.at(13));
+
+                int ret = QMessageBox::information(this, tr("Duplicate PhoneNumber"),
+                                                   DuplicationData+tr("\n\nDo you want Overwrite?\nYes:Overwrite, No:Cancel"),
+                                                   QMessageBox::Yes | QMessageBox::No,QMessageBox::Yes);
+                switch(ret)
+                {
+                case QMessageBox::Yes:
+                    query.exec(QString("update address_management set name='%1', phonenumber='%2',phonenumber2='%3',phonenumber3='%4',email='%5',email2='%6',email3='%7',grouping='%8',companyname='%9',department='%10'"
+                                       ",position='%11',addresstype='%12',addressnumber='%13',address='%14',addresstype2='%15',addressnumber2='%16',address2='%17',addresstype3='%18',addressnumber3='%19',address3='%20',memo='%21' where name='%22' and phonenumber='%23'")
+                               .arg(ExcelData.at(0),ExcelData.at(1),ExcelData.at(2),ExcelData.at(3),ExcelData.at(4),ExcelData.at(5),ExcelData.at(6),ExcelData.at(7),ExcelData.at(8))
+                               .arg(ExcelData.at(9),ExcelData.at(10),ExcelData.at(11),ExcelData.at(12),ExcelData.at(13),ExcelData.at(14),ExcelData.at(15),ExcelData.at(16),ExcelData.at(17))
+                               .arg(ExcelData.at(18),ExcelData.at(19),ExcelData.at(20))
+                               .arg(query.value("name").toString(),query.value("phonenumber").toString()));
+                    break;
+                }
+            }
+
+            else
+            {
+                QueryStr=QString("insert into address_management(name, phonenumber, phonenumber2, phonenumber3, email, email2, email3, grouping, companyname, department, position, addresstype, addressnumber, address"
+                                 ", addresstype2, addressnumber2, address2, addresstype3, addressnumber3, address3, memo) values('%1','%2','%3','%4','%5','%6','%7','%8','%9','%10','%11','%12','%13','%14','%15','%16','%17','%18','%19','%20','%21')")
+                        .arg(ExcelData.at(0),ExcelData.at(1),ExcelData.at(2),ExcelData.at(3),ExcelData.at(4),ExcelData.at(5),ExcelData.at(6),ExcelData.at(7),ExcelData.at(8))
+                        .arg(ExcelData.at(9),ExcelData.at(10),ExcelData.at(11),ExcelData.at(12),ExcelData.at(13),ExcelData.at(14),ExcelData.at(15),ExcelData.at(16),ExcelData.at(17))
+                        .arg(ExcelData.at(18),ExcelData.at(19),ExcelData.at(20));
+                query.exec(QueryStr);
+            }
+
             Count++;
         }
 
@@ -292,6 +353,40 @@ void MainWindow::ExcelUpload(QString FileName)
         QSqlDatabase::removeDatabase("MainDB");
     }
     xlsx.deleteLater();
+}
+
+void MainWindow::DBGroupMove(QString GroupName)
+{
+    QModelIndexList indexes,indexes2;
+    QSqlDatabase DB=QSqlDatabase::database("MainDB");
+
+    try
+    {
+        if(!DB.isOpen())
+        {
+            QSqlDatabase::removeDatabase("MainDB");
+            DBInit();
+        }
+
+        DB.transaction();
+        QSqlQuery query(DB);
+
+        indexes = ui->tableWidget->selectionModel()->selectedRows(0);
+        indexes2 = ui->tableWidget->selectionModel()->selectedRows(1);
+
+        for (int i=indexes.count()-1; i>=0; i--)
+        {
+            query.exec(QString("update address_management set grouping='%1' where name='%2' and phonenumber='%3'").arg(GroupName,indexes.at(i).data().toString(),indexes2.at(i).data().toString()));
+        }
+
+        DB.commit();
+        DB.close();
+    }
+    catch(QException &e)
+    {
+        QMessageBox::warning(this,tr("Warning"),QString("%1\n%2").arg(tr("Database Error!"),e.what()),QMessageBox::Ok);
+        QSqlDatabase::removeDatabase("MainDB");
+    }
 }
 
 void MainWindow::TreeWidgetInit()
@@ -590,4 +685,54 @@ void MainWindow::on_tableWidget_itemDoubleClicked(QTableWidgetItem *item)
     connect(&AddressDetailDlg,SIGNAL(TableWidgetUpdate()),this,SLOT(TableWidgetUpdate()));
     AddressDetailDlg.DBShow(QString("select * from address_management where name='%1' and phonenumber='%2'").arg(ui->tableWidget->item(item->row(),0)->text(),ui->tableWidget->item(item->row(),1)->text()));
     AddressDetailDlg.exec();
+}
+
+void MainWindow::on_actionGroupMove_triggered()
+{
+    if(ui->tableWidget->selectedItems().count()>0)
+    {
+        QSqlDatabase DB=QSqlDatabase::database("MainDB");
+        QStringList GroupList;
+        QString GroupName;
+
+        try
+        {
+            if(!DB.isOpen())
+            {
+                QSqlDatabase::removeDatabase("MainDB");
+                DBInit();
+            }
+
+            DB.transaction();
+            QSqlQuery query(DB);
+            query.exec("select * from group_management");
+
+            while(query.next())
+            {
+                GroupList.append(query.value("groupname").toString());
+            }
+            DB.commit();
+            DB.close();
+        }
+
+        catch(QException &e)
+        {
+            QMessageBox::warning(this,tr("Warning"),QString("%1\n%2").arg(tr("Database Error!"),e.what()),QMessageBox::Ok);
+            QSqlDatabase::removeDatabase("MainDB");
+            return;
+        }
+
+        GroupSelectDialog GroupSelectDlg;
+        GroupSelectDlg.ComboInit(GroupList);
+        GroupSelectDlg.LabelInit(tr("You should select move group."));
+        if(GroupSelectDlg.exec()==QDialog::Accepted)
+        {
+            DBGroupMove(GroupSelectDlg.ComboSelected());
+            GroupName=GroupSelectDlg.ComboSelected();
+            QMessageBox::information(this,tr("Group move"),tr("Selected address is group moved."),QMessageBox::Ok);
+        }
+
+        TreeWidgetInit();
+        TableWidgetShow(QString("select name, phonenumber, email, companyname, department, position from address_management where grouping='%1'").arg(GroupName));
+    }
 }

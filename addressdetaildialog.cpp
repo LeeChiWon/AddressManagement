@@ -124,7 +124,7 @@ void AddressDetailDialog::UIInit()
         DB.transaction();
         QSqlQuery query(DB);
         query.exec(QString("select * from group_management"));
-
+        ui->comboBox_Group->addItem("");
         while(query.next())
         {
             ui->comboBox_Group->addItem(query.value("groupname").toString());

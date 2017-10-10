@@ -17,6 +17,8 @@ public:
     ~GroupSelectDialog();
     QString ComboSelected();
     void ComboInit(QStringList);
+    void LabelInit(QStringList);
+    void LabelInit(QString);
 
 private:
     Ui::GroupSelectDialog *ui;

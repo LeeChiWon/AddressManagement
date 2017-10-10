@@ -47,6 +47,7 @@ private slots:
     void on_actionPrinter_triggered();
     void TableWidgetPrint(QPrinter*);
     void on_tableWidget_itemDoubleClicked(QTableWidgetItem *item);
+    void on_actionGroupMove_triggered();
 
 private:
     QSettings *Setting;
@@ -60,6 +61,7 @@ private:
     void TableWidgetContextMenuInit();
     void DBDelete(QString,QString);
     void ExcelUpload(QString);
+    void DBGroupMove(QString);
 };
 
 #endif // MAINWINDOW_H

@@ -124,7 +124,7 @@ void AddressAddDialog::DBSave()
             }
             QueryStr.append(QString("phonenumber='%1' or phonenumber2='%1' or phonenumber3='%1'").arg(ui->lineEdit_PhoneNumber_3->text()));
         }
-        query.exec(QueryStr);
+        query.exec(QueryStr);       
 
         if(!query.next())
         {
@@ -140,22 +140,23 @@ void AddressAddDialog::DBSave()
 
         else
         {
-            DuplicationData=QString("%1:%2\n%3:%4\n%5:%6\n%7:%8\n%9:%10\n%11:%12\n%13:%14").arg(tr("Name"),query.value("name").toString(),tr("PhoneNumber"),query.value("phonenumber").toString())
-                    .arg(tr("Email"),query.value("email").toString(),tr("GroupName"),query.value("grouping").toString(),tr("AddressType"),query.value("addresstype").toString())
-                    .arg(tr("AddressNumber"),query.value("addressnumber").toString(),tr("Address"),query.value("address").toString());
+            DuplicationData=QString("%1: %2 -> %3\n%4: %5 -> %6\n%7: %8 -> %9\n%10: %11 -> %12\n%13: %14 -> %15\n%16: %17 -> %18\n%19: %20 -> %21\n%22: %23 -> %24\n%25: %26 -> %27").arg(tr("Name"),query.value("name").toString(),ui->lineEdit_Name->text(),tr("PhoneNumber"),query.value("phonenumber").toString(),ui->lineEdit_PhoneNumber->text())
+                    .arg(tr("PhoneNumber2"),query.value("phonenumber2").toString(),ui->lineEdit_PhoneNumber_2->text(),tr("PhoneNumber3"),query.value("phonenumber3").toString(),ui->lineEdit_PhoneNumber_3->text())
+                    .arg(tr("Email"),query.value("email").toString(),ui->lineEdit_EMail->text(),tr("GroupName"),query.value("grouping").toString(),ui->comboBox_Group->currentText(),tr("AddressType"),query.value("addresstype").toString(),ui->comboBox_Address->currentText())
+                    .arg(tr("AddressNumber"),query.value("addressnumber").toString(),ui->lineEdit_AddressNumber->text(),tr("Address"),query.value("address").toString(),ui->textEdit_Address->toPlainText());
             int ret = QMessageBox::information(this, tr("Duplicate PhoneNumber"),
-                                               DuplicationData+tr("\nDo you want Overwrite?\nYes:Overwrite, No:Cancel"),
+                                               DuplicationData+tr("\n\nDo you want Overwrite?\nYes:Overwrite, No:Cancel"),
                                                QMessageBox::Yes | QMessageBox::No,QMessageBox::Yes);
             switch(ret)
             {
             case QMessageBox::Yes:
                 query.exec(QString("update address_management set name='%1', phonenumber='%2',phonenumber2='%3',phonenumber3='%4',email='%5',email2='%6',email3='%7',grouping='%8',companyname='%9',department='%10'"
-                                   ",position='%11',addresstype='%12',addressnumber='%13',address='%14',addresstype2='%15',addressnumber2='%16',address2='%17',addresstype3='%18',addressnumber3='%19',address3='%20',memo='%21'")
+                                   ",position='%11',addresstype='%12',addressnumber='%13',address='%14',addresstype2='%15',addressnumber2='%16',address2='%17',addresstype3='%18',addressnumber3='%19',address3='%20',memo='%21' where name='%22' and phonenumber='%23'")
                            .arg(ui->lineEdit_Name->text(),ui->lineEdit_PhoneNumber->text(),ui->lineEdit_PhoneNumber_2->text(),ui->lineEdit_PhoneNumber_3->text(),ui->lineEdit_EMail->text())
                            .arg(ui->lineEdit_EMail_2->text(),ui->lineEdit_EMail_3->text(),ui->comboBox_Group->currentText(),ui->lineEdit_CompanyName->text(),ui->lineEdit_CompanyDepartment->text())
                            .arg(ui->lineEdit_CompanyPosition->text(),ui->comboBox_Address->currentText(),ui->lineEdit_AddressNumber->text(),ui->textEdit_Address->toPlainText(),ui->comboBox_Address_2->currentText())
                            .arg(ui->lineEdit_AddressNumber_2->text(),ui->textEdit_Address_2->toPlainText(),ui->comboBox_Address_3->currentText(),ui->lineEdit_AddressNumber_3->text(),ui->textEdit_Address_3->toPlainText())
-                           .arg(ui->textEdit_Memo->toPlainText()));
+                           .arg(ui->textEdit_Memo->toPlainText(),query.value("name").toString(),query.value("phonenumber").toString()));
                 break;           
             default:
                 DB.commit();
