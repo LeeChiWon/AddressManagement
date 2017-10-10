@@ -9,6 +9,7 @@
 #include "addressdetaildialog.h"
 #include "addressdownloaddialog.h"
 #include "groupselectdialog.h"
+#include "duplicationdialog.h"
 
 namespace Ui {
 class MainWindow;

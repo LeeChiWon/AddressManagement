@@ -561,7 +561,9 @@ void MainWindow::on_actionDownload_triggered()
 
 void MainWindow::on_actionDuplicateCheck_triggered()
 {
-
+    DuplicationDialog DuplicationDlg;
+    connect(&DuplicationDlg,SIGNAL(DBInit()),this,SLOT(DBInit()));
+    DuplicationDlg.exec();
 }
 
 void MainWindow::DBInit()
