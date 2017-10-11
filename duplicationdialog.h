@@ -25,7 +25,8 @@ private:
     Ui::DuplicationDialog *ui;
 
     void TableWidgetInit();
-    void DBShow();
+    void DBShow();    
+    void DBDelete(QString);
 };
 
 #endif // DUPLICATIONDIALOG_H

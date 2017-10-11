@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>400</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -51,7 +51,7 @@
    <property name="spacing">
     <number>0</number>
    </property>
-   <item row="1" column="1">
+   <item row="2" column="1">
     <widget class="QPushButton" name="pushButton_Clean">
      <property name="text">
       <string>Clean</string>
@@ -62,7 +62,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
+   <item row="2" column="0">
     <spacer name="horizontalSpacer">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -75,7 +75,7 @@
      </property>
     </spacer>
    </item>
-   <item row="1" column="2">
+   <item row="2" column="2">
     <spacer name="horizontalSpacer_2">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -87,6 +87,26 @@
       </size>
      </property>
     </spacer>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="QLabel" name="label">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>- You should select address to use.
+- part of same color is the same phonenumber.</string>
+     </property>
+    </widget>
    </item>
    <item row="0" column="0" colspan="3">
     <widget class="QTableWidget" name="tableWidget">

@@ -50,6 +50,8 @@ private slots:
     void on_tableWidget_itemDoubleClicked(QTableWidgetItem *item);
     void on_actionGroupMove_triggered();
 
+    void on_actionHelp_triggered();
+
 private:
     QSettings *Setting;
     QMenu *TableWidgetContextMenu;

@@ -563,7 +563,10 @@ void MainWindow::on_actionDuplicateCheck_triggered()
 {
     DuplicationDialog DuplicationDlg;
     connect(&DuplicationDlg,SIGNAL(DBInit()),this,SLOT(DBInit()));
-    DuplicationDlg.exec();
+    if(DuplicationDlg.exec()==QDialog::Accepted)
+    {
+        TreeWidgetInit();
+    }
 }
 
 void MainWindow::DBInit()
@@ -737,4 +740,9 @@ void MainWindow::on_actionGroupMove_triggered()
         TreeWidgetInit();
         TableWidgetShow(QString("select name, phonenumber, email, companyname, department, position from address_management where grouping='%1'").arg(GroupName));
     }
+}
+
+void MainWindow::on_actionHelp_triggered()
+{
+
 }

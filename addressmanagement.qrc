@@ -21,5 +21,6 @@
         <file>img/leftarrow.png</file>
         <file>img/rightarrow.png</file>
         <file>img/group_move.png</file>
+        <file>img/help.png</file>
     </qresource>
 </RCC>
