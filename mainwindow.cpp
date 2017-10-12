@@ -270,8 +270,7 @@ void MainWindow::ExcelUpload(QString FileName)
                     else
                     {
                         ExcelData.append(xlsx.read(Count,j+1).toString());
-                    }
-                    qDebug()<<ExcelData.at(j);
+                    }                   
                 }
                 else
                 {
@@ -744,5 +743,6 @@ void MainWindow::on_actionGroupMove_triggered()
 
 void MainWindow::on_actionHelp_triggered()
 {
-
+    QString FileName=QString("file:///%1/Help.pdf").arg(QApplication::applicationDirPath());
+    QDesktopServices::openUrl(QUrl(FileName));
 }

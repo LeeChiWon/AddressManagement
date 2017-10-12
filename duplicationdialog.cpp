@@ -48,7 +48,6 @@ void DuplicationDialog::DBShow()
         DB.transaction();
         QSqlQuery query(DB);
         query.exec(QString("select name,phonenumber,grouping from address_management where phonenumber IN (select phonenumber from address_management group by phonenumber having count(*)>1) order by phonenumber asc"));
-        qDebug()<<query.lastError();
         while(query.next())
         {
             ui->tableWidget->setRowCount(ui->tableWidget->rowCount()+1);
@@ -94,8 +93,7 @@ void DuplicationDialog::DBDelete(QString QueryStr)
 
         DB.transaction();
         QSqlQuery query(DB);
-        query.exec(QueryStr);
-        qDebug()<<query.lastError()<<query.lastQuery();
+        query.exec(QueryStr);        
         DB.commit();
         DB.close();
 
@@ -110,8 +108,7 @@ void DuplicationDialog::DBDelete(QString QueryStr)
 void DuplicationDialog::on_pushButton_Clean_clicked()
 {
     for(int i=0; i<ui->tableWidget->rowCount(); i++)
-    {
-        qDebug()<<ui->tableWidget->cellWidget(i,0);
+    {        
         if(ui->tableWidget->cellWidget(i,0)!=NULL)
         {
             QRadioButton *RadioBox = qobject_cast<QRadioButton*>(ui->tableWidget->cellWidget(i,0));
