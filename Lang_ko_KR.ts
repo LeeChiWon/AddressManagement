@@ -9,147 +9,114 @@
         <translation>연락처추가</translation>
     </message>
     <message>
-        <location filename="addressadddialog.ui" line="118"/>
-        <location filename="addressadddialog.cpp" line="143"/>
+        <location filename="addressadddialog.ui" line="150"/>
+        <location filename="addressadddialog.cpp" line="57"/>
         <source>Name</source>
         <translation>이름</translation>
     </message>
     <message>
-        <location filename="addressadddialog.ui" line="1612"/>
+        <location filename="addressadddialog.ui" line="482"/>
+        <location filename="addressadddialog.cpp" line="59"/>
         <source>Memo</source>
         <translation>메모</translation>
     </message>
     <message>
-        <location filename="addressadddialog.ui" line="1680"/>
+        <location filename="addressadddialog.ui" line="274"/>
         <source>Save</source>
         <translation>저장</translation>
     </message>
     <message>
-        <location filename="addressadddialog.ui" line="1657"/>
+        <location filename="addressadddialog.ui" line="297"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="addressadddialog.ui" line="417"/>
-        <location filename="addressadddialog.cpp" line="143"/>
+        <location filename="addressadddialog.ui" line="393"/>
+        <location filename="addressadddialog.cpp" line="57"/>
         <source>PhoneNumber</source>
         <translation>전화번호</translation>
     </message>
     <message>
-        <location filename="addressadddialog.ui" line="207"/>
-        <location filename="addressadddialog.cpp" line="144"/>
         <source>PhoneNumber2</source>
-        <translation>전화번호</translation>
+        <translation type="vanished">전화번호</translation>
     </message>
     <message>
-        <location filename="addressadddialog.ui" line="522"/>
-        <location filename="addressadddialog.cpp" line="144"/>
         <source>PhoneNumber3</source>
-        <translation>전화번호</translation>
+        <translation type="vanished">전화번호</translation>
     </message>
     <message>
-        <location filename="addressadddialog.ui" line="805"/>
         <source>E-Mail</source>
-        <translation>이메일</translation>
+        <translation type="vanished">이메일</translation>
     </message>
     <message>
-        <location filename="addressadddialog.ui" line="611"/>
         <source>E-Mail2</source>
-        <translation>이메일</translation>
+        <translation type="vanished">이메일</translation>
     </message>
     <message>
-        <location filename="addressadddialog.ui" line="716"/>
         <source>E-Mail3</source>
-        <translation>이메일</translation>
+        <translation type="vanished">이메일</translation>
     </message>
     <message>
-        <location filename="addressadddialog.ui" line="296"/>
+        <location filename="addressadddialog.ui" line="239"/>
         <source>Group</source>
         <translation>그룹</translation>
     </message>
     <message>
-        <location filename="addressadddialog.ui" line="1050"/>
-        <location filename="addressadddialog.cpp" line="12"/>
-        <location filename="addressadddialog.cpp" line="13"/>
-        <location filename="addressadddialog.cpp" line="14"/>
         <source>Company</source>
-        <translation>회사</translation>
+        <translation type="vanished">회사</translation>
     </message>
     <message>
-        <location filename="addressadddialog.ui" line="1187"/>
-        <location filename="addressadddialog.ui" line="1364"/>
-        <location filename="addressadddialog.ui" line="1488"/>
-        <location filename="addressadddialog.cpp" line="146"/>
         <source>Address</source>
-        <translation>주소</translation>
+        <translation type="vanished">주소</translation>
     </message>
     <message>
-        <location filename="addressadddialog.ui" line="1226"/>
-        <location filename="addressadddialog.cpp" line="44"/>
-        <location filename="addressadddialog.cpp" line="45"/>
-        <location filename="addressadddialog.cpp" line="46"/>
-        <location filename="addressadddialog.cpp" line="146"/>
         <source>AddressNumber</source>
-        <translation>우편번호</translation>
+        <translation type="vanished">우편번호</translation>
     </message>
     <message>
-        <location filename="addressadddialog.cpp" line="12"/>
-        <location filename="addressadddialog.cpp" line="13"/>
-        <location filename="addressadddialog.cpp" line="14"/>
         <source>Home</source>
-        <translation>집</translation>
+        <translation type="vanished">집</translation>
     </message>
     <message>
-        <location filename="addressadddialog.cpp" line="12"/>
-        <location filename="addressadddialog.cpp" line="13"/>
-        <location filename="addressadddialog.cpp" line="14"/>
         <source>Etc</source>
-        <translation>기타</translation>
+        <translation type="vanished">기타</translation>
     </message>
     <message>
-        <location filename="addressadddialog.cpp" line="41"/>
         <source>CompanyName</source>
-        <translation>회사이름</translation>
+        <translation type="vanished">회사이름</translation>
     </message>
     <message>
-        <location filename="addressadddialog.cpp" line="42"/>
         <source>CompanyPosition</source>
-        <translation>직급</translation>
+        <translation type="vanished">직급</translation>
     </message>
     <message>
-        <location filename="addressadddialog.cpp" line="43"/>
         <source>CompanyDepartment</source>
-        <translation>부서</translation>
+        <translation type="vanished">부서</translation>
     </message>
     <message>
-        <location filename="addressadddialog.cpp" line="47"/>
-        <location filename="addressadddialog.cpp" line="48"/>
-        <location filename="addressadddialog.cpp" line="49"/>
         <source>Detail Address</source>
-        <translation>상세주소</translation>
+        <translation type="vanished">상세주소</translation>
     </message>
     <message>
-        <location filename="addressadddialog.cpp" line="145"/>
         <source>Email</source>
-        <translation>이메일</translation>
+        <translation type="vanished">이메일</translation>
     </message>
     <message>
-        <location filename="addressadddialog.cpp" line="145"/>
+        <location filename="addressadddialog.cpp" line="58"/>
         <source>GroupName</source>
         <translation>그룹이름</translation>
     </message>
     <message>
-        <location filename="addressadddialog.cpp" line="145"/>
         <source>AddressType</source>
-        <translation>주소지</translation>
+        <translation type="vanished">주소지</translation>
     </message>
     <message>
-        <location filename="addressadddialog.cpp" line="147"/>
+        <location filename="addressadddialog.cpp" line="61"/>
         <source>Duplicate PhoneNumber</source>
         <translation>중복된 연락처</translation>
     </message>
     <message>
-        <location filename="addressadddialog.cpp" line="148"/>
+        <location filename="addressadddialog.cpp" line="62"/>
         <source>
 
 Do you want Overwrite?
@@ -175,31 +142,28 @@ OK:Overwrite, CANCEL:New</source>
 OK:덮어쓰기, CANCEL:새로운추가</translation>
     </message>
     <message>
-        <location filename="addressadddialog.cpp" line="168"/>
+        <location filename="addressadddialog.cpp" line="78"/>
         <source>DB Save</source>
         <translation>연락처 저장</translation>
     </message>
     <message>
-        <location filename="addressadddialog.cpp" line="168"/>
+        <location filename="addressadddialog.cpp" line="78"/>
         <source>DB is Saved.</source>
         <translation>연락처가 저장되었습니다.</translation>
     </message>
     <message>
-        <location filename="addressadddialog.cpp" line="177"/>
-        <location filename="addressadddialog.cpp" line="207"/>
         <source>Warning</source>
-        <translation>경고</translation>
+        <translation type="vanished">경고</translation>
     </message>
     <message>
-        <location filename="addressadddialog.cpp" line="177"/>
-        <location filename="addressadddialog.cpp" line="207"/>
+        <location filename="addressadddialog.cpp" line="87"/>
+        <location filename="addressadddialog.cpp" line="116"/>
         <source>Database Error!</source>
         <translation>데이터베이스 에러!</translation>
     </message>
     <message>
-        <location filename="addressadddialog.cpp" line="232"/>
         <source>AddressNumberSearch</source>
-        <translation>우편번호검색</translation>
+        <translation type="vanished">우편번호검색</translation>
     </message>
 </context>
 <context>
@@ -210,119 +174,103 @@ OK:덮어쓰기, CANCEL:새로운추가</translation>
         <translation>연락처 상세 정보</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.ui" line="168"/>
         <source>Address</source>
-        <translation>주소</translation>
+        <translation type="vanished">주소</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.ui" line="193"/>
+        <location filename="addressdetaildialog.ui" line="536"/>
         <source>Modify</source>
         <translation>수정</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.ui" line="292"/>
-        <location filename="addressdetaildialog.cpp" line="110"/>
         <source>Company</source>
-        <translation>회사</translation>
+        <translation type="vanished">회사</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.ui" line="387"/>
         <source>E-Mail</source>
-        <translation>이메일</translation>
+        <translation type="vanished">이메일</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.ui" line="504"/>
         <source>Address2</source>
-        <translation>주소</translation>
+        <translation type="vanished">주소</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.ui" line="621"/>
+        <location filename="addressdetaildialog.ui" line="389"/>
         <source>Name</source>
         <translation>이름</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.ui" line="846"/>
         <source>E-Mail2</source>
-        <translation>이메일</translation>
+        <translation type="vanished">이메일</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.ui" line="941"/>
+        <location filename="addressdetaildialog.ui" line="179"/>
         <source>Group</source>
         <translation>그룹</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.ui" line="1080"/>
         <source>Address3</source>
-        <translation>주소</translation>
+        <translation type="vanished">주소</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.ui" line="1197"/>
         <source>PhoneNumber3</source>
-        <translation>전화번호</translation>
+        <translation type="vanished">전화번호</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.ui" line="1292"/>
+        <location filename="addressdetaildialog.ui" line="478"/>
         <source>PhoneNumber</source>
         <translation>전화번호</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.ui" line="1381"/>
+        <location filename="addressdetaildialog.ui" line="48"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.ui" line="1546"/>
         <source>E-Mail3</source>
-        <translation>이메일</translation>
+        <translation type="vanished">이메일</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.ui" line="1641"/>
+        <location filename="addressdetaildialog.ui" line="268"/>
         <source>Memo</source>
         <translation>메모</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.ui" line="1654"/>
         <source>AddressNumber</source>
-        <translation>우편번호</translation>
+        <translation type="vanished">우편번호</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.ui" line="1749"/>
         <source>PhoneNumber2</source>
-        <translation>전화번호</translation>
+        <translation type="vanished">전화번호</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.cpp" line="63"/>
-        <location filename="addressdetaildialog.cpp" line="98"/>
-        <location filename="addressdetaildialog.cpp" line="137"/>
         <source>Warning</source>
-        <translation>경고</translation>
+        <translation type="vanished">경고</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.cpp" line="63"/>
-        <location filename="addressdetaildialog.cpp" line="98"/>
-        <location filename="addressdetaildialog.cpp" line="137"/>
+        <location filename="addressdetaildialog.cpp" line="46"/>
+        <location filename="addressdetaildialog.cpp" line="74"/>
+        <location filename="addressdetaildialog.cpp" line="108"/>
         <source>Database Error!</source>
         <translation>데이터베이스 에러!</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.cpp" line="93"/>
+        <location filename="addressdetaildialog.cpp" line="69"/>
         <source>Update Address</source>
         <translation>연락처 수정</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.cpp" line="93"/>
+        <location filename="addressdetaildialog.cpp" line="69"/>
         <source>Address is Updated.</source>
         <translation>연락처가 수정되었습니다.</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.cpp" line="110"/>
         <source>Home</source>
-        <translation>집</translation>
+        <translation type="vanished">집</translation>
     </message>
     <message>
-        <location filename="addressdetaildialog.cpp" line="110"/>
         <source>Etc</source>
-        <translation>기타</translation>
+        <translation type="vanished">기타</translation>
     </message>
 </context>
 <context>
@@ -339,195 +287,154 @@ OK:덮어쓰기, CANCEL:새로운추가</translation>
     </message>
     <message>
         <location filename="addressdownloaddialog.ui" line="60"/>
-        <location filename="addressdownloaddialog.cpp" line="72"/>
-        <location filename="addressdownloaddialog.cpp" line="143"/>
+        <location filename="addressdownloaddialog.cpp" line="67"/>
+        <location filename="addressdownloaddialog.cpp" line="138"/>
         <source>All</source>
         <translation>전체선택</translation>
     </message>
     <message>
         <location filename="addressdownloaddialog.ui" line="85"/>
-        <location filename="addressdownloaddialog.cpp" line="181"/>
-        <location filename="addressdownloaddialog.cpp" line="192"/>
+        <location filename="addressdownloaddialog.cpp" line="176"/>
+        <location filename="addressdownloaddialog.cpp" line="185"/>
         <source>Name</source>
         <translation>이름</translation>
     </message>
     <message>
         <location filename="addressdownloaddialog.ui" line="113"/>
-        <location filename="addressdownloaddialog.cpp" line="181"/>
-        <location filename="addressdownloaddialog.cpp" line="203"/>
+        <location filename="addressdownloaddialog.cpp" line="176"/>
+        <location filename="addressdownloaddialog.cpp" line="196"/>
         <source>PhoneNumber</source>
         <translation>전화번호</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.ui" line="141"/>
         <source>EMail</source>
-        <translation>이메일</translation>
+        <translation type="vanished">이메일</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.ui" line="169"/>
+        <location filename="addressdownloaddialog.ui" line="141"/>
         <source>Group</source>
         <translation>그룹</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.ui" line="194"/>
-        <location filename="addressdownloaddialog.cpp" line="182"/>
-        <location filename="addressdownloaddialog.cpp" line="269"/>
         <source>Address</source>
-        <translation>주소</translation>
+        <translation type="vanished">주소</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.ui" line="219"/>
-        <location filename="addressdownloaddialog.cpp" line="182"/>
-        <location filename="addressdownloaddialog.cpp" line="246"/>
         <source>Department</source>
-        <translation>부서</translation>
+        <translation type="vanished">부서</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.ui" line="244"/>
-        <location filename="addressdownloaddialog.cpp" line="182"/>
-        <location filename="addressdownloaddialog.cpp" line="256"/>
         <source>Position</source>
-        <translation>직급</translation>
+        <translation type="vanished">직급</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.ui" line="269"/>
-        <location filename="addressdownloaddialog.cpp" line="181"/>
-        <location filename="addressdownloaddialog.cpp" line="237"/>
         <source>CompanyName</source>
-        <translation>회사이름</translation>
+        <translation type="vanished">회사이름</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.ui" line="297"/>
-        <location filename="addressdownloaddialog.cpp" line="183"/>
-        <location filename="addressdownloaddialog.cpp" line="285"/>
+        <location filename="addressdownloaddialog.ui" line="166"/>
+        <location filename="addressdownloaddialog.cpp" line="176"/>
+        <location filename="addressdownloaddialog.cpp" line="219"/>
         <source>Memo</source>
         <translation>메모</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.ui" line="311"/>
+        <location filename="addressdownloaddialog.ui" line="180"/>
         <source>Download</source>
         <translation>내려받기</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.ui" line="353"/>
+        <location filename="addressdownloaddialog.ui" line="222"/>
         <source>Group Select</source>
         <translation>그룹 선택</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="57"/>
+        <location filename="addressdownloaddialog.cpp" line="52"/>
         <source>Save File</source>
         <translation>파일 저장</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="57"/>
+        <location filename="addressdownloaddialog.cpp" line="52"/>
         <source>Excel (*.xlsx)</source>
         <translation>엑셀 (*.xlsx)</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="127"/>
+        <location filename="addressdownloaddialog.cpp" line="122"/>
         <source>Save</source>
         <translation>저장</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="127"/>
+        <location filename="addressdownloaddialog.cpp" line="122"/>
         <source>Excel File is Saved.</source>
         <translation>엑셀파일이 저장되었습니다.</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="136"/>
-        <location filename="addressdownloaddialog.cpp" line="167"/>
         <source>Warning</source>
-        <translation>경고</translation>
+        <translation type="vanished">경고</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="136"/>
-        <location filename="addressdownloaddialog.cpp" line="167"/>
+        <location filename="addressdownloaddialog.cpp" line="131"/>
+        <location filename="addressdownloaddialog.cpp" line="162"/>
         <source>Database Error!</source>
         <translation>데이터베이스 에러!</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="181"/>
-        <location filename="addressdownloaddialog.cpp" line="204"/>
         <source>PhoneNumber2</source>
-        <translation>전화번호2</translation>
+        <translation type="vanished">전화번호2</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="181"/>
-        <location filename="addressdownloaddialog.cpp" line="205"/>
         <source>PhoneNumber3</source>
-        <translation>전화번호3</translation>
+        <translation type="vanished">전화번호3</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="181"/>
-        <location filename="addressdownloaddialog.cpp" line="215"/>
         <source>Email</source>
-        <translation>이메일</translation>
+        <translation type="vanished">이메일</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="181"/>
-        <location filename="addressdownloaddialog.cpp" line="216"/>
         <source>Email2</source>
-        <translation>이메일2</translation>
+        <translation type="vanished">이메일2</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="181"/>
-        <location filename="addressdownloaddialog.cpp" line="217"/>
         <source>Email3</source>
-        <translation>이메일3</translation>
+        <translation type="vanished">이메일3</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="181"/>
-        <location filename="addressdownloaddialog.cpp" line="227"/>
+        <location filename="addressdownloaddialog.cpp" line="176"/>
+        <location filename="addressdownloaddialog.cpp" line="208"/>
         <source>Grouping</source>
         <translation>그룹</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="182"/>
-        <location filename="addressdownloaddialog.cpp" line="267"/>
         <source>AddressType</source>
-        <translation>주소지</translation>
+        <translation type="vanished">주소지</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="182"/>
-        <location filename="addressdownloaddialog.cpp" line="268"/>
         <source>AddressNumber</source>
-        <translation>우편번호</translation>
+        <translation type="vanished">우편번호</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="182"/>
-        <location filename="addressdownloaddialog.cpp" line="270"/>
         <source>AddressType2</source>
-        <translation>주소지2</translation>
+        <translation type="vanished">주소지2</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="182"/>
-        <location filename="addressdownloaddialog.cpp" line="271"/>
         <source>AddressNumber2</source>
-        <translation>우편번호2</translation>
+        <translation type="vanished">우편번호2</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="182"/>
-        <location filename="addressdownloaddialog.cpp" line="272"/>
         <source>Address2</source>
-        <translation>주소2</translation>
+        <translation type="vanished">주소2</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="183"/>
-        <location filename="addressdownloaddialog.cpp" line="273"/>
         <source>AddressType3</source>
-        <translation>주소지3</translation>
+        <translation type="vanished">주소지3</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="183"/>
-        <location filename="addressdownloaddialog.cpp" line="274"/>
         <source>AddressNumber3</source>
-        <translation>우편번호3</translation>
+        <translation type="vanished">우편번호3</translation>
     </message>
     <message>
-        <location filename="addressdownloaddialog.cpp" line="183"/>
-        <location filename="addressdownloaddialog.cpp" line="275"/>
         <source>Address3</source>
-        <translation>주소3</translation>
+        <translation type="vanished">주소3</translation>
     </message>
 </context>
 <context>
@@ -565,24 +472,22 @@ OK:덮어쓰기, CANCEL:새로운추가</translation>
         <translation>그룹이름</translation>
     </message>
     <message>
-        <location filename="duplicationdialog.cpp" line="79"/>
-        <location filename="duplicationdialog.cpp" line="105"/>
         <source>Warning</source>
-        <translation>경고</translation>
+        <translation type="vanished">경고</translation>
     </message>
     <message>
-        <location filename="duplicationdialog.cpp" line="79"/>
-        <location filename="duplicationdialog.cpp" line="105"/>
+        <location filename="duplicationdialog.cpp" line="78"/>
+        <location filename="duplicationdialog.cpp" line="103"/>
         <source>Database Error!</source>
         <translation>데이터베이스 에러!</translation>
     </message>
     <message>
-        <location filename="duplicationdialog.cpp" line="124"/>
+        <location filename="duplicationdialog.cpp" line="121"/>
         <source>Duplication Clean</source>
         <translation>중복된 연락처 정리</translation>
     </message>
     <message>
-        <location filename="duplicationdialog.cpp" line="124"/>
+        <location filename="duplicationdialog.cpp" line="121"/>
         <source>Duplication address is Cleaned.</source>
         <translation>중복된 연락처가 정리되었습니다.</translation>
     </message>
@@ -615,9 +520,8 @@ OK:덮어쓰기, CANCEL:새로운추가</translation>
         <translation>의 그룹이 추가되었습니다.</translation>
     </message>
     <message>
-        <location filename="groupadddialog.cpp" line="50"/>
         <source>Warning</source>
-        <translation>경고</translation>
+        <translation type="vanished">경고</translation>
     </message>
     <message>
         <location filename="groupadddialog.cpp" line="50"/>
@@ -660,7 +564,7 @@ OK:덮어쓰기, CANCEL:새로운추가</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="94"/>
-        <location filename="mainwindow.cpp" line="627"/>
+        <location filename="mainwindow.cpp" line="583"/>
         <source>Search</source>
         <translation>검색</translation>
     </message>
@@ -775,211 +679,190 @@ OK:덮어쓰기, CANCEL:새로운추가</translation>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="66"/>
+        <location filename="mainwindow.cpp" line="67"/>
         <source>Application Exit</source>
         <translation>어플리케이션 종료</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="67"/>
+        <location filename="mainwindow.cpp" line="68"/>
         <source>Do you want exit application?</source>
         <translation>어플리케이션을 종료 하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="123"/>
+        <location filename="mainwindow.cpp" line="124"/>
         <source>Group &amp; Includes Addresses is Deleted.</source>
         <translation>그룹 및 연락처가 삭제되었습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="127"/>
+        <location filename="mainwindow.cpp" line="128"/>
         <source>Group is Deleted.</source>
         <translation>그룹이 삭제되었습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="260"/>
-        <location filename="mainwindow.cpp" line="314"/>
         <source>PhoneNumber2</source>
-        <translation>전화번호2</translation>
+        <translation type="vanished">전화번호2</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="260"/>
-        <location filename="mainwindow.cpp" line="314"/>
         <source>PhoneNumber3</source>
-        <translation>전화번호3</translation>
+        <translation type="vanished">전화번호3</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="315"/>
-        <location filename="mainwindow.cpp" line="396"/>
+        <location filename="mainwindow.cpp" line="349"/>
         <source>GroupName</source>
         <translation>그룹이름</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="315"/>
         <source>Email</source>
-        <translation>이메일</translation>
+        <translation type="vanished">이메일</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="315"/>
         <source>AddressType</source>
-        <translation>주소지</translation>
+        <translation type="vanished">주소지</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="316"/>
         <source>AddressNumber</source>
-        <translation>우편번호</translation>
+        <translation type="vanished">우편번호</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="316"/>
         <source>Address</source>
-        <translation>주소</translation>
+        <translation type="vanished">주소</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="318"/>
         <source>Duplicate PhoneNumber</source>
-        <translation>중복된 연락처</translation>
+        <translation type="vanished">중복된 연락처</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="319"/>
         <source>
 
 Do you want Overwrite?
 Yes:Overwrite, No:Cancel</source>
-        <translation>
+        <translation type="vanished">
 
 덮어쓰기 하시겠습니까?
 Yes:덮어쓰기, No: 취소</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="396"/>
+        <location filename="mainwindow.cpp" line="349"/>
         <source>Count</source>
         <translation>갯수</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="398"/>
-        <location filename="mainwindow.cpp" line="525"/>
-        <location filename="mainwindow.cpp" line="642"/>
+        <location filename="mainwindow.cpp" line="351"/>
+        <location filename="mainwindow.cpp" line="480"/>
+        <location filename="mainwindow.cpp" line="596"/>
         <source>AllAddress</source>
         <translation>모든 연락처</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="398"/>
-        <location filename="mainwindow.cpp" line="525"/>
-        <location filename="mainwindow.cpp" line="647"/>
+        <location filename="mainwindow.cpp" line="351"/>
+        <location filename="mainwindow.cpp" line="480"/>
+        <location filename="mainwindow.cpp" line="601"/>
         <source>NoNameAddress</source>
         <translation>이름없는 연락처</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="495"/>
+        <location filename="mainwindow.cpp" line="449"/>
         <source>Address Delete</source>
         <translation>연락처 삭제</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="496"/>
+        <location filename="mainwindow.cpp" line="450"/>
         <source>Do you want delete address?</source>
         <translation>연락처를 삭제하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="528"/>
+        <location filename="mainwindow.cpp" line="483"/>
         <source>Do you want to delete the includes Addresses?
 Yes=All, No=only Group, Cancel=Cancel</source>
         <translation>그룹에 포함된 연락처도 삭제하시겠습니까?
 Yes=모두삭제, No=그룹만 삭제, Cancel=취소</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="546"/>
+        <location filename="mainwindow.cpp" line="501"/>
         <source>Open File</source>
         <translation>파일 열기</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="546"/>
+        <location filename="mainwindow.cpp" line="501"/>
         <source>Excel File(*.xlsx)</source>
         <translation>엑셀 파일(*.xlsx)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="551"/>
+        <location filename="mainwindow.cpp" line="506"/>
         <source>Excel Upload</source>
         <translation>엑셀 업로드</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="551"/>
+        <location filename="mainwindow.cpp" line="506"/>
         <source>Upload Complete.</source>
         <translation>업로드 완료.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="627"/>
+        <location filename="mainwindow.cpp" line="583"/>
         <source>Input the search word.</source>
         <translation>검색할 단어를 입력하세요.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="636"/>
+        <location filename="mainwindow.cpp" line="590"/>
         <source>Search Result</source>
         <translation>검색 결과</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="636"/>
+        <location filename="mainwindow.cpp" line="590"/>
         <source>Search word is nothing.</source>
         <translation>찾는 단어가 없습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="665"/>
+        <location filename="mainwindow.cpp" line="619"/>
         <source>Preview</source>
         <translation>미리보기</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="674"/>
+        <location filename="mainwindow.cpp" line="628"/>
         <source>can&apos;t start printer</source>
         <translation>인쇄할 수 없습니다</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="681"/>
+        <location filename="mainwindow.cpp" line="635"/>
         <source>Error</source>
         <translation>프린터 에러</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="732"/>
+        <location filename="mainwindow.cpp" line="687"/>
         <source>You should select move group.</source>
         <translation>이동할 그룹을 선택해주세요.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="737"/>
+        <location filename="mainwindow.cpp" line="692"/>
         <source>Group move</source>
         <translation>그룹 이동</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="737"/>
+        <location filename="mainwindow.cpp" line="692"/>
         <source>Selected address is group moved.</source>
         <translation>선택된 연락처가 그룹 이동되었습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="137"/>
-        <location filename="mainwindow.cpp" line="175"/>
-        <location filename="mainwindow.cpp" line="209"/>
-        <location filename="mainwindow.cpp" line="352"/>
-        <location filename="mainwindow.cpp" line="387"/>
-        <location filename="mainwindow.cpp" line="472"/>
-        <location filename="mainwindow.cpp" line="584"/>
-        <location filename="mainwindow.cpp" line="587"/>
-        <location filename="mainwindow.cpp" line="617"/>
-        <location filename="mainwindow.cpp" line="674"/>
-        <location filename="mainwindow.cpp" line="725"/>
+        <location filename="mainwindow.cpp" line="628"/>
         <source>Warning</source>
         <translation>경고</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="137"/>
-        <location filename="mainwindow.cpp" line="175"/>
-        <location filename="mainwindow.cpp" line="209"/>
-        <location filename="mainwindow.cpp" line="352"/>
-        <location filename="mainwindow.cpp" line="387"/>
-        <location filename="mainwindow.cpp" line="472"/>
-        <location filename="mainwindow.cpp" line="617"/>
-        <location filename="mainwindow.cpp" line="725"/>
+        <location filename="mainwindow.cpp" line="138"/>
+        <location filename="mainwindow.cpp" line="172"/>
+        <location filename="mainwindow.cpp" line="206"/>
+        <location filename="mainwindow.cpp" line="305"/>
+        <location filename="mainwindow.cpp" line="340"/>
+        <location filename="mainwindow.cpp" line="425"/>
+        <location filename="mainwindow.cpp" line="573"/>
+        <location filename="mainwindow.cpp" line="680"/>
         <source>Database Error!</source>
         <translation>데이터베이스 에러!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="123"/>
-        <location filename="mainwindow.cpp" line="127"/>
-        <location filename="mainwindow.cpp" line="527"/>
+        <location filename="mainwindow.cpp" line="124"/>
+        <location filename="mainwindow.cpp" line="128"/>
+        <location filename="mainwindow.cpp" line="482"/>
         <source>Group Delete</source>
         <translation>그룹 삭제</translation>
     </message>
@@ -989,51 +872,49 @@ Yes=모두삭제, No=그룹만 삭제, Cancel=취소</translation>
         <translation>연락처 검색</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="259"/>
-        <location filename="mainwindow.cpp" line="313"/>
-        <location filename="mainwindow.cpp" line="481"/>
+        <location filename="mainwindow.cpp" line="255"/>
+        <location filename="mainwindow.cpp" line="555"/>
+        <source>NoGroup</source>
+        <translation>미지정</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="434"/>
         <source>Name</source>
         <translation>이름</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="259"/>
-        <location filename="mainwindow.cpp" line="313"/>
-        <location filename="mainwindow.cpp" line="481"/>
+        <location filename="mainwindow.cpp" line="434"/>
         <source>PhoneNumber</source>
         <translation>전화번호</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="481"/>
         <source>EMail</source>
-        <translation>이메일</translation>
+        <translation type="vanished">이메일</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="481"/>
         <source>Company</source>
-        <translation>회사</translation>
+        <translation type="vanished">회사</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="481"/>
         <source>Department</source>
-        <translation>부서</translation>
+        <translation type="vanished">부서</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="481"/>
         <source>Position</source>
-        <translation>직급</translation>
+        <translation type="vanished">직급</translation>
     </message>
     <message>
         <source>Do you want to delete the includes Addresses?</source>
         <translation type="vanished">그룹에 포함된 연락처도 삭제하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="584"/>
-        <location filename="mainwindow.cpp" line="587"/>
+        <location filename="mainwindow.cpp" line="541"/>
+        <location filename="mainwindow.cpp" line="544"/>
         <source>Database open error!</source>
         <translation>데이터베이스 열기 에러!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="584"/>
+        <location filename="mainwindow.cpp" line="541"/>
         <source>Database is not exist!</source>
         <translation>데이터베이스가 존재하지 않습니다!</translation>
     </message>

@@ -30,8 +30,8 @@ SOURCES += main.cpp\
     tableprinter.cpp \
     addressdetaildialog.cpp \
     addressdownloaddialog.cpp \
-    groupselectdialog.cpp \
-    duplicationdialog.cpp
+    duplicationdialog.cpp \
+    groupselectdialog.cpp
 
 HEADERS  += mainwindow.h \
     define.h\
@@ -40,16 +40,16 @@ HEADERS  += mainwindow.h \
     tableprinter.h \
     addressdetaildialog.h \
     addressdownloaddialog.h \
-    groupselectdialog.h \
-    duplicationdialog.h
+    duplicationdialog.h \
+    groupselectdialog.h
 
 FORMS    += mainwindow.ui \
     addressadddialog.ui \
     groupadddialog.ui \
     addressdetaildialog.ui \
     addressdownloaddialog.ui \
-    groupselectdialog.ui \
-    duplicationdialog.ui
+    duplicationdialog.ui \
+    groupselectdialog.ui
 
 RESOURCES += \
     addressmanagement.qrc

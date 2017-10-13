@@ -8,8 +8,8 @@
 #include "tableprinter.h"
 #include "addressdetaildialog.h"
 #include "addressdownloaddialog.h"
-#include "groupselectdialog.h"
 #include "duplicationdialog.h"
+#include "groupselectdialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -26,6 +26,8 @@ public:
 
 protected:
     void closeEvent(QCloseEvent *event);
+signals:
+    void ShowMessage(QString,int);
 
 private slots:
     void on_actionExit_triggered();
@@ -49,8 +51,7 @@ private slots:
     void TableWidgetPrint(QPrinter*);
     void on_tableWidget_itemDoubleClicked(QTableWidgetItem *item);
     void on_actionGroupMove_triggered();
-
-    void on_actionHelp_triggered();
+    void on_actionHelp_triggered(); 
 
 private:
     QSettings *Setting;

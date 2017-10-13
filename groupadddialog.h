@@ -24,6 +24,7 @@ signals:
     void TreeWidgetInit();
     void DBInit();
     void ComboInit();
+    void ShowMessage(QString,int);
 
 private slots:
     void on_pushButton_Close_clicked();

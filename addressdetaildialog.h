@@ -19,6 +19,8 @@ public:
 signals:
     void DBInit();
     void TableWidgetUpdate();
+    void TreeWidgetInit();
+    void ShowMessage(QString,int);
 
 private slots:
     void on_pushButton_Modify_clicked();

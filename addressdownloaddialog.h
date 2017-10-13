@@ -17,6 +17,7 @@ public:
     ~AddressDownloadDialog();
 signals:
     void DBInit();
+    void ShowMessage(QString,int);
 
 private slots:
     void on_checkBox_All_clicked(bool checked);

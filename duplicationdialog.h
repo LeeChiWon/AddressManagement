@@ -15,8 +15,12 @@ class DuplicationDialog : public QDialog
 public:
     explicit DuplicationDialog(QWidget *parent = 0);
     ~DuplicationDialog();
+
+    void Init();
+    void Init(QMultiMap<QString,QStringList>);
 signals:
     void DBInit();
+    void ShowMessage(QString,int);
 
 private slots:
     void on_pushButton_Clean_clicked();
@@ -26,7 +30,8 @@ private:
 
     void TableWidgetInit();
     void DBShow();    
-    void DBDelete(QString);
+    void DBCommand(QString);
+    bool Upload;
 };
 
 #endif // DUPLICATIONDIALOG_H

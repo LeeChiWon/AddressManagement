@@ -47,7 +47,7 @@ void GroupAddDialog::on_pushButton_Add_clicked()
     }
     catch(QException &e)
     {
-        QMessageBox::warning(this,tr("Warning"),QString("%1\n%2").arg(tr("Database Error!"),e.what()),QMessageBox::Ok);
+        ShowMessage(QString("%1\n%2").arg(tr("Database Error!"),e.what()),0);
         QSqlDatabase::removeDatabase("MainDB");
     }
     DB.commit();

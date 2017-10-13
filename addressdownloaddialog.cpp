@@ -15,12 +15,7 @@ AddressDownloadDialog::~AddressDownloadDialog()
 }
 
 void AddressDownloadDialog::on_checkBox_All_clicked(bool checked)
-{
-    ui->checkBox_Address->setChecked(checked);
-    ui->checkBox_CompanyDepartment->setChecked(checked);
-    ui->checkBox_CompanyName->setChecked(checked);
-    ui->checkBox_CompanyPosition->setChecked(checked);
-    ui->checkBox_EMail->setChecked(checked);
+{   
     ui->checkBox_Group->setChecked(checked);
     ui->checkBox_Memo->setChecked(checked);
     ui->checkBox_Name->setChecked(checked);
@@ -133,7 +128,7 @@ void AddressDownloadDialog::on_pushButton_Download_clicked()
     }
     catch(QException &e)
     {
-        QMessageBox::warning(this,tr("Warning"),QString("%1\n%2").arg(tr("Database Error!"),e.what()),QMessageBox::Ok);
+        ShowMessage(QString("%1\n%2").arg(tr("Database Error!"),e.what()),0);
         QSqlDatabase::removeDatabase("MainDB");
     }
 }
@@ -164,7 +159,7 @@ void AddressDownloadDialog::ListWidgetInit()
     }
     catch(QException &e)
     {
-        QMessageBox::warning(this,tr("Warning"),QString("%1\n%2").arg(tr("Database Error!"),e.what()),QMessageBox::Ok);
+        ShowMessage(QString("%1\n%2").arg(tr("Database Error!"),e.what()),0);
         QSqlDatabase::removeDatabase("MainDB");
     }
 }
@@ -177,10 +172,8 @@ QString AddressDownloadDialog::ListSelect()
     if(ui->checkBox_All->isChecked())
     {
         QueryStr.append("*");
-        ListCount=21;
-        ListNames=QStringList()<<tr("Name")<<tr("PhoneNumber")<<tr("PhoneNumber2")<<tr("PhoneNumber3")<<tr("Email")<<tr("Email2")<<tr("Email3")<<tr("Grouping")<<tr("CompanyName")
-                              <<tr("Department")<<tr("Position")<<tr("AddressType")<<tr("AddressNumber")<<tr("Address")<<tr("AddressType2")<<tr("AddressNumber2")<<tr("Address2")
-                             <<tr("AddressType3")<<tr("AddressNumber3")<<tr("Address3")<<tr("Memo");
+        ListCount=4;
+        ListNames=QStringList()<<tr("Name")<<tr("PhoneNumber")<<tr("Grouping")<<tr("Memo");
         return QueryStr;
     }
     else
@@ -198,24 +191,12 @@ QString AddressDownloadDialog::ListSelect()
             {
                 QueryStr.append(",");
             }
-            QueryStr.append("phonenumber, phonenumber2, phonenumber3");
-            ListCount+=3;
+            QueryStr.append("phonenumber");
+            ListCount++;
             ListNames.append(tr("PhoneNumber"));
-            ListNames.append(tr("PhoneNumber2"));
-            ListNames.append(tr("PhoneNumber3"));
+
         }
-        if(ui->checkBox_EMail->isChecked())
-        {
-            if(!QueryStr.isEmpty())
-            {
-                QueryStr.append(",");
-            }
-            QueryStr.append("email, email2, email3");
-            ListCount+=3;
-            ListNames.append(tr("Email"));
-            ListNames.append(tr("Email2"));
-            ListNames.append(tr("Email3"));
-        }
+
         if(ui->checkBox_Group->isChecked())
         {
             if(!QueryStr.isEmpty())
@@ -226,54 +207,7 @@ QString AddressDownloadDialog::ListSelect()
             ListCount++;
             ListNames.append(tr("Grouping"));
         }
-        if(ui->checkBox_CompanyName->isChecked())
-        {
-            if(!QueryStr.isEmpty())
-            {
-                QueryStr.append(",");
-            }
-            QueryStr.append("companyname");
-            ListCount++;
-            ListNames.append(tr("CompanyName"));
-        }
-        if(ui->checkBox_CompanyDepartment->isChecked())
-        {
-            if(!QueryStr.isEmpty())
-            {
-                QueryStr.append(",");
-            }
-            QueryStr.append("department");
-            ListNames.append(tr("Department"));
-            ListCount++;
-        }
-        if(ui->checkBox_CompanyPosition->isChecked())
-        {
-            if(!QueryStr.isEmpty())
-            {
-                QueryStr.append(",");
-            }
-            QueryStr.append("position");
-            ListNames.append(tr("Position"));
-            ListCount++;
-        }
-        if(ui->checkBox_Address->isChecked())
-        {
-            if(!QueryStr.isEmpty())
-            {
-                QueryStr.append(",");
-            }
-            QueryStr.append("addresstype,addressnumber,address,addresstype2,addressnumber2,address2,addresstype3,addressnumber3,address3");
-            ListCount+=9;
-            ListNames.append(tr("AddressType"));
-            ListNames.append(tr("AddressNumber"));
-            ListNames.append(tr("Address"));
-            ListNames.append(tr("AddressType2"));
-            ListNames.append(tr("AddressNumber2"));
-            ListNames.append(tr("Address2"));
-            ListNames.append(tr("AddressType3"));
-            ListNames.append(tr("AddressNumber3"));
-            ListNames.append(tr("Address3"));
-        }
+
         if(ui->checkBox_Memo->isChecked())
         {
             if(!QueryStr.isEmpty())
