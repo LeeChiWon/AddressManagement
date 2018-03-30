@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "define.h"
+#include <QAxObject>
 
 namespace Ui {
 class AddressDownloadDialog;

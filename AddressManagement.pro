@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui xlsx sql printsupport
+QT       += core gui xlsx sql printsupport axcontainer
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

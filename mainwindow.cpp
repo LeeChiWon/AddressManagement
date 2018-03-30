@@ -219,6 +219,7 @@ void MainWindow::ExcelUpload(QString FileName)
     int Count=2;
     bool bAddStr=false;
 
+
     try
     {
         if(!DB.isOpen())

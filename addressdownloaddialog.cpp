@@ -125,6 +125,21 @@ void AddressDownloadDialog::on_pushButton_Download_clicked()
         xlsx.deleteLater();
         DB.commit();
         DB.close();
+
+    /*    QAxObject* excel = new QAxObject( "Excel.Application", 0 );
+        QAxObject* workbooks = excel->querySubObject( "Workbooks" );
+        QAxObject* workbook = workbooks->querySubObject( "Open(const QString&",FileName);
+        QAxObject* worksheets = workbook->querySubObject( "Worksheets");
+        QAxObject* worksheet = worksheets->querySubObject( "Item(int)",1);
+        worksheet->dynamicCall("PrintOut()");
+        workbook->dynamicCall("Close()");
+        excel->dynamicCall("Quit()");
+        worksheet->deleteLater();
+        worksheets->deleteLater();
+        workbook->deleteLater();
+        workbooks->deleteLater();
+        excel->deleteLater();*/
+
     }
     catch(QException &e)
     {

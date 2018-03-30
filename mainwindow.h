@@ -10,6 +10,7 @@
 #include "addressdownloaddialog.h"
 #include "duplicationdialog.h"
 #include "groupselectdialog.h"
+#include "QAxObject"
 
 namespace Ui {
 class MainWindow;
